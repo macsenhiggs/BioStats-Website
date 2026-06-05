@@ -1,7 +1,16 @@
 ---
-title: "BioStats-Website"
+title: "Stat 3125 ProjectGuide"
 ---
 
-This is a Quarto website.
+This website exists as a resource for STAT 3125 students looking to create a semester project with the intention of presenting at Analytics Day, fulfilling an honors contract, or simply expanding their portfolio.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Resources available on this site include but are not limited to:
+
+* Where to find your dataset
+* Using popular R packages to make data analysis easier
+* Performing Exploratory Data Analysis (EDA)
+* Possible data processing/modeling methods
+* Using ggplot2 for easy plot creation
+* Assembling a presentation/poster
+
+If this is your first time using the site, it is recommended to begin by reading our [Getting Started](./getting-started.qmd) page, which will prepare you for your upcoming project.

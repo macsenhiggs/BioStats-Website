@@ -2,12 +2,12 @@ project:
   type: website
 
 website:
-  title: "BioStats-Website"
+  title: "Stat 3125 ProjectGuide"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - getting-started.qmd
 
 format:
   html:

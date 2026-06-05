@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "BioStats-Website",
+    "title": "Stat 3125 ProjectGuide",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This website exists as a resource for STAT 3125 students looking to create a semester project with the intention of presenting at Analytics Day, fulfilling an honors contract, or simply expanding their portfolio.\nResources available on this site include but are not limited to:\n\nWhere to find your dataset\nUsing popular R packages to make data analysis easier\nPerforming Exploratory Data Analysis (EDA)\nPossible data processing/modeling methods\nUsing ggplot2 for easy plot creation\nAssembling a presentation/poster\n\nIf this is your first time using the site, it is recommended to begin by reading our Getting Started page, which will prepare you for your upcoming project."
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,12 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
+    "title": "Getting Started",
+    "section": "",
+    "text": "Placeholder text!"
   }
 ]
