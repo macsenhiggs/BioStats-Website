@@ -1,0 +1,10 @@
+---
+title: "Example Projects"
+---
+
+Below are a list of example projects that previous STAT 3125 students created that you can use as reference. They feature varying degrees of complexity and were chosen with the intent of giving prospective students a handful of paths that they could follow with their project.
+
+* ### Example A: [Identifying Opioid Misuse Indicators Among Rural Populations](example-project-a.qmd)
+* ### Example B: [Using Differentials in GLM-Predicted Success to Analyze Opioid Rehabilitation Treatment Decisions](example-project-b.qmd)
+* ### Example C: [[insert here]](index.qmd)
+* ### Example D: [[insert here]](index.qmd)

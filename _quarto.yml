@@ -8,6 +8,15 @@ website:
       - href: index.qmd
         text: Home
       - getting-started.qmd
+      - href: example-project-nav.qmd
+        text: Examples
+  page-footer:
+    left: ""
+    center: "Built with Quarto"
+    right:  ""
+      #- icon: github
+        #href: https://github.com
+
 
 format:
   html:
@@ -16,6 +25,3 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-

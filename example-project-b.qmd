@@ -1,0 +1,5 @@
+---
+title: "Example Project B: Using Differentials in GLM-Predicted Success to Analyze Opioid Rehabilitation Treatment Decisions"
+---
+
+Words

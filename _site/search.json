@@ -18,6 +18,34 @@
     "href": "getting-started.html",
     "title": "Getting Started",
     "section": "",
-    "text": "Placeholder text!"
+    "text": "Before a student can get underway with a project, there are a few pieces of prerequisite knowledge that are recommended to prevent roadblocks further down the line.\n\nR and R Studio: The first couple weeks of class will ensure that you are set up with this software, as it is required for classwork. The guides on this website are written with R users in mind.\nPopular R packages: These packages will make appearances in some of the example projects on this site and greatly simplify the work of data analysis and visualization. \n\ndplyr:\n\nClick here to read a helpful guide written for STAT 3125 students like you.\nClick here to learn more from its official website.\n\nfinalfit:\n\nClick here to read a helpful guide written for STAT 3125 students like you.\nClick here to learn more from its official website.\n\nggplot2:\n\nClick here to read a helpful guide written for STAT 3125 students like you.\nClick here to learn more from its official website.\n\n\n\nAlthough details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such:\n\nFinding and Choosing a Dataset\nChoosing Your Research Question\nPerforming Exploratory Data Analysis (EDA)\nModeling Data (Working title)\nAnalyzing Results\nCreating Your Report/Presentation"
+  },
+  {
+    "objectID": "example_project-nav.html",
+    "href": "example_project-nav.html",
+    "title": "Example Projects",
+    "section": "",
+    "text": "Below are a list of example projects that previous STAT 3125 students created that you can use as reference. They feature varying degrees of complexity and were chosen with the intent of giving prospective students a handful of paths that they could follow with their project.\n\nExample A: Identifying Opioid Misuse Indicators Among Rural Populations"
+  },
+  {
+    "objectID": "example-project-nav.html",
+    "href": "example-project-nav.html",
+    "title": "Example Projects",
+    "section": "",
+    "text": "Below are a list of example projects that previous STAT 3125 students created that you can use as reference. They feature varying degrees of complexity and were chosen with the intent of giving prospective students a handful of paths that they could follow with their project.\n\nExample A: Identifying Opioid Misuse Indicators Among Rural Populations\nExample B: Using Differentials in GLM-Predicted Success to Analyze Opioid Rehabilitation Treatment Decisions\nExample C: [insert here]\nExample D: [insert here]"
+  },
+  {
+    "objectID": "example-project-a.html",
+    "href": "example-project-a.html",
+    "title": "Example Project A: Identifying Opioid Misuse Indicators Among Rural Populations",
+    "section": "",
+    "text": "Words"
+  },
+  {
+    "objectID": "example-project-b.html",
+    "href": "example-project-b.html",
+    "title": "Example Project B: Using Differentials in GLM-Predicted Success to Analyze Opioid Rehabilitation Treatment Decisions",
+    "section": "",
+    "text": "Words"
   }
 ]

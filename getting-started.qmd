@@ -2,4 +2,26 @@
 title: "Getting Started"
 ---
 
-Placeholder text!
+Before a student can get underway with a project, there are a few pieces of prerequisite knowledge that are recommended to prevent roadblocks further down the line.
+
+* R and R Studio: The first couple weeks of class will ensure that you are set up with this software, as it is required for classwork. The guides on this website are written with R users in mind.
+* Popular R packages: These packages will make appearances in some of the example projects on this site and greatly simplify the work of data analysis and visualization.
+    <!-- Turn this into a table instead? -->
+  * dplyr:
+    * Click [here](dplyr-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
+    * Click [here](https://dplyr.tidyverse.org/) to learn more from its official website.
+  * finalfit:
+    * Click [here](finalfit-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
+    * Click [here](https://finalfit.org/) to learn more from its official website.
+  * ggplot2: 
+    * Click [here](ggplot2-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
+    * Click [here](https://ggplot2.tidyverse.org/) to learn more from its official website.
+
+Although details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such:
+
+1. Finding and Choosing a Dataset
+2. Choosing Your Research Question
+3. Performing Exploratory Data Analysis (EDA)
+4. Modeling Data (Working title)
+5. Analyzing Results
+6. Creating Your Report/Presentation

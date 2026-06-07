@@ -7,5 +7,17 @@
   },
   "getting-started.qmd": {
     "getting-started.html": "4919d33e"
+  },
+  "example_project-nav.qmd": {
+    "example_project-nav.html": "e842f137"
+  },
+  "example-project-nav.qmd": {
+    "example-project-nav.html": "c45054bd"
+  },
+  "example-project-a.qmd": {
+    "example-project-a.html": "b645706c"
+  },
+  "example-project-b.qmd": {
+    "example-project-b.html": "7731f933"
   }
 }
