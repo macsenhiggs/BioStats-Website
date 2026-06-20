@@ -1,0 +1,97 @@
+---
+title: "An Introduction to dplyr"
+---
+
+### Introduction
+
+Per its website, dplyr is "a grammar of data manipulation" that greatly simplifies data processing using core verbiage such as:
+
+- group_by(): subdivides datasets for independent analysis
+- filter(): removes values that do not match a given condition
+- mutate(): creates new variables from existing ones
+- summarize(): aggregates data from multiple values into a single summary value
+- select(): selects (or deselects) variables to include or exclude from the dataset
+
+### Improvements over base R
+
+While dplyr's data manipulation features do not enable the user to perform any actions that aren't possible in base R, its simplicity is its key. dplyr allows users to transform their datasets in simple commands rather than nested function calls. The following table from the official [dplyr <-> base R](https://dplyr.tidyverse.org/articles/base.html) article demonstrates the reduction in complexity that dplyr functions enable.
+
+| **dplyr** | **base** |
+|:---|:---|
+| `arrange(df, x)` | `df[order(x), , drop = FALSE]` |
+| `distinct(df, x)` | `df[!duplicated(x), , drop = FALSE]`, `unique()` |
+| `filter(df, x)` | `df[which(x), , drop = FALSE]`, `subset()` |
+| `mutate(df, z = x + y)` | `df$z <- df$x + df$y`, `transform()` |
+| `pull(df, 1)` | `df[[1]]` |
+| `pull(df, x)` | `df$x` |
+| `rename(df, y = x)` | `names(df)[names(df) == "x"] <- "y"` |
+| `relocate(df, y)` | `df[union("y", names(df))]` |
+| `select(df, x, y)` | `df[c("x", "y")]`, `subset()` |
+| `select(df, starts_with("x"))` | `df[grep("^x", names(df))]` |
+| `summarise(df, mean(x))` | `mean(df$x)`, `tapply()`, `aggregate()`, `by()` |
+| `slice(df, c(1, 2, 5))` | `df[c(1, 2, 5), , drop = FALSE]` |
+
+In addition to reducing individual calls, some dplyr functions would require multiple separate calls in base R to achieve the same result. For example, let's examine the `iris` dataset, a staple resource in data science education, and attempt to tally the number of flowers of each species in the dataset. In dplyr, all we would have to do is:
+
+```{r}
+#| warning: false
+
+library(dplyr)
+data <- iris %>%
+group_by(Species) %>%
+summarize(mean_sepal_width = mean(Sepal.Width)) %>%
+print()
+```
+
+The equivalent code in base R would look something like this:
+
+```{r}
+#| warning: false 
+
+means <- tapply(iris$Sepal.Width, iris$Species, mean)
+data <- data.frame(
+  Species = names(means),
+  mean_sepal_width = as.vector(means),
+  row.names = NULL
+)
+print(data)
+```
+
+Note how dplyr avoids repeat references as well as intermediary variables. These are some of the many reasons data scientists prefer dplyr for R data manipulation.
+
+### A Note on Pipes in R
+
+If characters such as `%>%` or `|>` look unfamiliar to you, that may be because you've never worked with R's pipe system before. Put simply, pipes are simple operators that allow programmers to chain functions to each other using common data, reducing redundant object references and simplifying code.
+
+For example, let's look at the code below (once again using the `iris` dataset), where the user is attempting to calculate how the average sepal width of setosa and versicolor flowers compare.
+
+#### Base Code
+
+```{r}
+#| warning: false
+
+library(dplyr)
+data <- iris
+data <- filter(data, Species %in% c("setosa", "versicolor"))
+data <- group_by(data, Species)
+data <- summarize(data, mean_sepal_width = mean(Sepal.Width))
+print(data)
+```
+
+#### Using Pipes
+
+```{r}
+#| warning: false
+library(dplyr)
+data <- iris %>%
+  filter(Species %in% c("setosa", "versicolor")) %>%
+  group_by(Species) %>%
+  summarize(mean_sepal_width = mean(Sepal.Width)) %>%
+  print()
+```
+
+When you use pipes, the object and its variables are preserved between operations, making references much more intuitive and code less cluttered. It can take a bit to adjust, but once you get comfortable using pipes it will make your R coding much easier.
+
+### Learn More
+
+If you would like to learn more about dplyr, visit [its website](https://dplyr.tidyverse.org/) for more information.

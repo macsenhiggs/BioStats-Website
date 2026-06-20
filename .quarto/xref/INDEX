@@ -19,5 +19,17 @@
   },
   "example-project-b.qmd": {
     "example-project-b.html": "7731f933"
+  },
+  "finalfit-guide.qmd": {
+    "finalfit-guide.html": "a14e8983"
+  },
+  "ggplot2-guide.qmd": {
+    "ggplot2-guide.html": "3f9dbaa6"
+  },
+  "dplyr-guide.qmd": {
+    "dplyr-guide.html": "fbe73fa3"
+  },
+  "choosing_your_question.qmd": {
+    "choosing_your_question.html": "72947117"
   }
 }

@@ -1,0 +1,38 @@
+---
+title: "An Introduction to finalfit"
+---
+
+### Introduction
+
+For Project A, The student utilized the finalfit package to create clean tables for their logistic regression model. finalfit is an open-source package to be used with R Studio to create clean, publication-ready tables for the data analysis model of your choosing. The package compiles your numbers into a table, grouping data in an efficient, automated way to present in a paper or poster. finalfit is a great programming package for beginners in data analytics research.
+
+### Use Cases and Limitations
+::: {.columns}
+::: {.column width="45%"}
+#### finalfit Can:
+* Summarize quantitative variable values by a categorical variable
+* Summarize regression model results in table format
+* Summarize regression model results into a plot
+:::
+
+::: {.column width="10%"}
+<!-- This acts as empty spacer columns -->
+:::
+
+::: {.column width="45%"}
+#### finalfit Cannot:
+* Analyze results from advanced machine learning models
+* Handle large amounts of levels for categorical variables
+* Perform Bayesian modeling
+:::
+:::
+
+Generally speaking, finalfit is most useful when [insert here]
+
+### Example Utilization
+
+Let's look at one example situation where finalfit can make data analysis much easier than it would be in base R.
+
+### Learn More
+
+If you would like to learn more about finalfit, visit [its website](https://finalfit.org/index.html) for more information.
