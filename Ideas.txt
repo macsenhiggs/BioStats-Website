@@ -1,1 +1,8 @@
-1. add article headers
+
+Macsen to do:
+- opioid example project article
+- choosing your dataset article
+
+Gabi to do:
+- add code examples to finalfit guide
+- add structure to "choosing your question"

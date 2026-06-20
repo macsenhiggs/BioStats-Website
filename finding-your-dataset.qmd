@@ -1,0 +1,31 @@
+---
+title: "Finding a Dataset"
+---
+
+The first step in developing a project in data science is finding a dataset to analyze. Students may pursue a variety of avenues when sourcing their data, and the below sections serve to highlight some of the most popular and extensive free data hubs on the internet.
+
+### Data.gov
+
+[Data.gov](https://data.gov) is the US government's central host for public data, containing over 500,000 datasets as of 2026. Most relevant to Stat 3125 students, the site hosts nearly 20,000 datasets from the Department of Health & Human Services, with most popular datasets including:
+
+* [U.S. Chronic Disease Indicators](https://catalog.data.gov/dataset/u-s-chronic-disease-indicators) (Last updated 6/4/2026)
+* [NCHS - Leading Causes of Death: United States](https://catalog.data.gov/dataset/nchs-leading-causes-of-death-united-states) (Last updated 4/21/2025)
+* [Mental Health Care in the Last 4 Weeks](https://catalog.data.gov/dataset/mental-health-care-in-the-last-4-weeks) (Last updated 4/21/2025)
+
+In addition, the Center for Disease Control (CDC) hosts its own portal for open data, available at [data.cdc.gov](https://data.cdc.gov). The site hosts over 1,500 datasets, including many key data sources covering the COVID-19 pandemic.
+
+### Kaggle
+
+[Kaggle](https://kaggle.com) is a privately-run platform for datasets and data science competitions. Users are free to publish their own data sets and respond to others with their own analysis. Nearly any topic of dataset can be found on Kaggle, from sports to disease to animal species. The key drawback of Kaggle is that the public nature of its data can make it difficult to find quality datasets at times.
+
+### Google Dataset Search
+
+[Google Dataset Search](https://datasetsearch.research.google.com) is a search tool built on the foundations of Google Research that aggregates public datasets from across the internet into a searchable site. Details included in searches include:
+
+* Data source
+* Data format
+* Date last updated
+* Description
+* Governing body (when applicable)
+
+Google Dataset Search is a good resource for students who know the topic they want to cover but want a wholistic picture of possible data sources.

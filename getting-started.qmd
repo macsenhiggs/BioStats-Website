@@ -17,10 +17,10 @@ Before a student can get underway with a project, there are a few pieces of prer
     * Click [here](ggplot2-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
     * Click [here](https://ggplot2.tidyverse.org/) to learn more from its official website.
 
-Although details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such:
+Although details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such, and a helpful article has been provided for each step:
 
-1. Finding and Choosing a Dataset
-2. Choosing Your Research Question
+1. [Finding and Choosing a Dataset](finding-your-dataset.qmd)
+2. [Choosing Your Research Question](choosing-your-question.qmd)
 3. Performing Exploratory Data Analysis (EDA)
 4. Modeling Data (Working title)
 5. Analyzing Results

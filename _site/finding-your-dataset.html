@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started – Stat 3125 ProjectGuide</title>
+<title>Finding a Dataset – Stat 3125 ProjectGuide</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./getting-started.html" aria-current="page"> 
+    <a class="nav-link" href="./getting-started.html"> 
 <span class="menu-text">Getting Started</span></a>
   </li>  
   <li class="nav-item">
@@ -115,15 +115,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data.gov" id="toc-data.gov" class="nav-link active" data-scroll-target="#data.gov">Data.gov</a></li>
+  <li><a href="#kaggle" id="toc-kaggle" class="nav-link" data-scroll-target="#kaggle">Kaggle</a></li>
+  <li><a href="#google-dataset-search" id="toc-google-dataset-search" class="nav-link" data-scroll-target="#google-dataset-search">Google Dataset Search</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Getting Started</h1>
+<h1 class="title">Finding a Dataset</h1>
 </div>
 
 
@@ -140,39 +148,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Before a student can get underway with a project, there are a few pieces of prerequisite knowledge that are recommended to prevent roadblocks further down the line.</p>
+<p>The first step in developing a project in data science is finding a dataset to analyze. Students may pursue a variety of avenues when sourcing their data, and the below sections serve to highlight some of the most popular and extensive free data hubs on the internet.</p>
+<section id="data.gov" class="level3">
+<h3 class="anchored" data-anchor-id="data.gov">Data.gov</h3>
+<p><a href="https://data.gov">Data.gov</a> is the US government’s central host for public data, containing over 500,000 datasets as of 2026. Most relevant to Stat 3125 students, the site hosts nearly 20,000 datasets from the Department of Health &amp; Human Services, with most popular datasets including:</p>
 <ul>
-<li>R and R Studio: The first couple weeks of class will ensure that you are set up with this software, as it is required for classwork. The guides on this website are written with R users in mind.</li>
-<li>Popular R packages: These packages will make appearances in some of the example projects on this site and greatly simplify the work of data analysis and visualization. <!-- Turn this into a table instead? -->
-<ul>
-<li>dplyr:
-<ul>
-<li>Click <a href="./dplyr-guide.html">here</a> to read a helpful guide written for STAT 3125 students like you.</li>
-<li>Click <a href="https://dplyr.tidyverse.org/">here</a> to learn more from its official website.</li>
-</ul></li>
-<li>finalfit:
-<ul>
-<li>Click <a href="./finalfit-guide.html">here</a> to read a helpful guide written for STAT 3125 students like you.</li>
-<li>Click <a href="https://finalfit.org/">here</a> to learn more from its official website.</li>
-</ul></li>
-<li>ggplot2:
-<ul>
-<li>Click <a href="./ggplot2-guide.html">here</a> to read a helpful guide written for STAT 3125 students like you.</li>
-<li>Click <a href="https://ggplot2.tidyverse.org/">here</a> to learn more from its official website.</li>
-</ul></li>
-</ul></li>
+<li><a href="https://catalog.data.gov/dataset/u-s-chronic-disease-indicators">U.S. Chronic Disease Indicators</a> (Last updated 6/4/2026)</li>
+<li><a href="https://catalog.data.gov/dataset/nchs-leading-causes-of-death-united-states">NCHS - Leading Causes of Death: United States</a> (Last updated 4/21/2025)</li>
+<li><a href="https://catalog.data.gov/dataset/mental-health-care-in-the-last-4-weeks">Mental Health Care in the Last 4 Weeks</a> (Last updated 4/21/2025)</li>
 </ul>
-<p>Although details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such, and a helpful article has been provided for each step:</p>
-<ol type="1">
-<li><a href="./finding-your-dataset.html">Finding and Choosing a Dataset</a></li>
-<li><a href="./choosing-your-question.html">Choosing Your Research Question</a></li>
-<li>Performing Exploratory Data Analysis (EDA)</li>
-<li>Modeling Data (Working title)</li>
-<li>Analyzing Results</li>
-<li>Creating Your Report/Presentation</li>
-</ol>
+<p>In addition, the Center for Disease Control (CDC) hosts its own portal for open data, available at <a href="https://data.cdc.gov">data.cdc.gov</a>. The site hosts over 1,500 datasets, including many key data sources covering the COVID-19 pandemic.</p>
+</section>
+<section id="kaggle" class="level3">
+<h3 class="anchored" data-anchor-id="kaggle">Kaggle</h3>
+<p><a href="https://kaggle.com">Kaggle</a> is a privately-run platform for datasets and data science competitions. Users are free to publish their own data sets and respond to others with their own analysis. Nearly any topic of dataset can be found on Kaggle, from sports to disease to animal species. The key drawback of Kaggle is that the public nature of its data can make it difficult to find quality datasets at times.</p>
+</section>
+<section id="google-dataset-search" class="level3">
+<h3 class="anchored" data-anchor-id="google-dataset-search">Google Dataset Search</h3>
+<p><a href="https://datasetsearch.research.google.com">Google Dataset Search</a> is a search tool built on the foundations of Google Research that aggregates public datasets from across the internet into a searchable site. Details included in searches include:</p>
+<ul>
+<li>Data source</li>
+<li>Data format</li>
+<li>Date last updated</li>
+<li>Description</li>
+<li>Governing body (when applicable)</li>
+</ul>
+<p>Google Dataset Search is a good resource for students who know the topic they want to cover but want a wholistic picture of possible data sources.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
