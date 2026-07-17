@@ -37,5 +37,8 @@
   },
   "finding-your-dataset.qmd": {
     "finding-your-dataset.html": "6d6046bb"
+  },
+  "performing-eda.qmd": {
+    "performing-eda.html": "7a8ab51e"
   }
 }

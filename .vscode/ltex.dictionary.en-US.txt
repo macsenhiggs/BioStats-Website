@@ -2,3 +2,5 @@ tidyverse
 finalfit
 dplyr
 FinalFit
+KSU
+Correlograms

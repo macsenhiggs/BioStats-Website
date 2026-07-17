@@ -115,8 +115,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#finding-a-dataset" id="toc-finding-a-dataset" class="nav-link active" data-scroll-target="#finding-a-dataset">Finding a Dataset</a></li>
+  <li><a href="#choosing-a-question" id="toc-choosing-a-question" class="nav-link" data-scroll-target="#choosing-a-question">Choosing a Question</a></li>
+  <li><a href="#performing-exploratory-data-analysis" id="toc-performing-exploratory-data-analysis" class="nav-link" data-scroll-target="#performing-exploratory-data-analysis">Performing Exploratory Data Analysis</a></li>
+  <li><a href="#modeling-data" id="toc-modeling-data" class="nav-link" data-scroll-target="#modeling-data">Modeling Data</a></li>
+  <li><a href="#analyzing-results" id="toc-analyzing-results" class="nav-link" data-scroll-target="#analyzing-results">Analyzing Results</a></li>
+  <li><a href="#creating-a-report" id="toc-creating-a-report" class="nav-link" data-scroll-target="#creating-a-report">Creating a Report</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -140,9 +151,111 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Words</p>
+<p>This article documents yet another example project made by an undergraduate student at KSU.</p>
+<section id="finding-a-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="finding-a-dataset">Finding a Dataset</h3>
+<p>At the beginning of the semester, the student approached their professor inquiring about the possibility of doing a research project in parallel with their classwork as a part of an honors contract. The professor referred the student to the Treatment Episode Data Set (TEDS), a nationwide yearly report on all recorded instances of formal treatment for substance abuse in the United States.</p>
+</section>
+<section id="choosing-a-question" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-question">Choosing a Question</h3>
+<p>When reading over the dataset, the student noticed a variable, <code>METHUSE</code>, which denoted whether the patient was given opioid therapy[footnote on definition here] or not. Seeing this flag, the student wondered how patients already struggling with addiction to opioids would fare in their outcome when given or not given opioid therapy. The dataset contained another variable, <code>REASON</code>, which denoted the final result of the patient’s treatment, such as completing rehab, dropping out, or being kicked out. Using these variables, the student formulated their question:</p>
+<blockquote class="blockquote">
+<p>“Among patients in treatment for opioid addiction, does prescribing opioid therapy have a positive or negative impact on outcome?”</p>
+</blockquote>
+</section>
+<section id="performing-exploratory-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="performing-exploratory-data-analysis">Performing Exploratory Data Analysis</h3>
+<p>With a question in mind, the student moved onto the Exploratory Data Analysis (EDA) step of their project. To quantify the efficacy of opioid therapy, they created a binary variable <code>SUCCESS</code> as a logical filter of <code>REASON</code>. The table below demonstrates the assignment of <code>SUCCESS</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Outcome</th>
+<th style="text-align: center;">Success Value</th>
+<th style="text-align: center;">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment Completed</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">23.70%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dropped Out Of Treatment</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">24.29%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Terminated by Facility</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">4.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transferred to Other Program/Facility</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">41.14%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Incarcerated</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">1.13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Death</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">0.55%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Other</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">5.05%</td>
+</tr>
+</tbody>
+</table>
+<p>With the binary created, the student created a table of <code>SUCCESS</code> rates by <code>METHUSE</code> values, which resulted in the following table:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">METHUSE</th>
+<th style="text-align: center;">SUCCESS_RATE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Yes</td>
+<td style="text-align: center;">0.3647949</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No</td>
+<td style="text-align: center;">0.6043464</td>
+</tr>
+</tbody>
+</table>
+<p>Although it was possible that opioid therapy was having a strong negative impact on patient outcomes, the student suspected that situational factors would lead to a strong correlation between patients having more difficult (less likely to be successful) cases and requiring opioid therapy. This hypothesis led the student to decide how they wanted to model their data.</p>
+</section>
+<section id="modeling-data" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-data">Modeling Data</h3>
+<p>To isolate for situation, the student chose to train a generalized linear model (GLM) on every opioid patient’s situational factors upon their arrival to treatment, such as:</p>
+<ul>
+<li>Filtering Factors (requirements to be in study, e.g.&nbsp;primary substance)</li>
+<li>Demographic Factors (age, race, sex, etc.)</li>
+<li>Drug Usage Factors (frequency/route of use, age at first use)</li>
+</ul>
+<p>to estimate their likelihood of successful rehabilitation when they arrive at the institution. With each patient assigned a predicted success value, the residual of their actual vs.&nbsp;predicted success would provide, in the aggregate, a picture of what treatment decisions are better or worse for patients.</p>
+</section>
+<section id="analyzing-results" class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-results">Analyzing Results</h3>
+<p>With residuals calculated, the final step was to group patients and calculate their aggregate response to opioid therapy to see where the practice is most and least effective. One such visual derived from the analysis phase of this project is the radar plot below, which groups by the <code>SERVICES</code> setting the patient was in upon arrival.</p>
+<p><img src="assets/exampleprojb-radarplot.png" class="img-fluid" style="border: 2px solid black;"></p>
+</section>
+<section id="creating-a-report" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-report">Creating a Report</h3>
+<p>With multiple rounds of results analysis complete, the final step for the student was to compile their findings into a report. Since the student wanted to present their project at KSU analytics day at the end of the semester, they used a template from the analytics day website to structure their report in a poster board format. They condensed their background, methods, results, and conclusions into paragraph format and added their relevant visuals, and their project was done!</p>
+<p>The full report has been attached below for future reference.</p>
+<p><img src="assets/exampleprojb-posterboard.png" class="img-fluid" style="border: 2px solid black;"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -549,20 +662,13 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2026, Your Name</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
 <p>Built with Quarto</p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>

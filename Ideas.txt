@@ -1,7 +1,7 @@
 
 Macsen to do:
-- opioid example project article
-- choosing your dataset article
+- Finish EDA article
+- Write ggplot2 guide article
 
 Gabi to do:
 - add code examples to finalfit guide

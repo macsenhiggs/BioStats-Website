@@ -21,7 +21,7 @@ Although details can vary on a case-by-case basis: the fundamental structure of 
 
 1. [Finding and Choosing a Dataset](finding-your-dataset.qmd)
 2. [Choosing Your Research Question](choosing-your-question.qmd)
-3. Performing Exploratory Data Analysis (EDA)
+3. [Performing Exploratory Data Analysis (EDA)](performing-eda.qmd)
 4. Modeling Data (Working title)
 5. Analyzing Results
 6. Creating Your Report/Presentation
