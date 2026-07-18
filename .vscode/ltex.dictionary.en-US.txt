@@ -4,3 +4,6 @@ dplyr
 FinalFit
 KSU
 Correlograms
+ggplot
+geoms
+ColorBrewer
