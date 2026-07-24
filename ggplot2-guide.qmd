@@ -16,6 +16,58 @@ Plotting in ggplot2 is as simple as constructing these aspects in a specified or
 
 ### Building a ggplot Object
 
+Let's follow a basic example of the process of building an object in ggplot2. Let's say I am studying the `iris` dataset and have come upon the following question: "How do sepal and petal size vary by plant species, and how can I visualize that in a way that shows every data point?" First, we will need to manipulate our dataset. `iris` does not contain variables for overall size of sepals or petals, so let's use dplyr to create a new variable for sepal/petal area.
+
+```{r}
+#| warning: false
+
+library(dplyr)
+
+iris_mod <- iris |>
+mutate(
+  Sepal.Area = Sepal.Length * Sepal.Width,
+  Petal.Area = Petal.Length * Petal.Width
+)
+```
+
+If the transformation in the above section looks unfamiliar, you may want to read [this short article](dplyr-guide.qmd) on the package before you continue reading this one.
+
+Next, let's break this question down into its associated ggplot2 elements.
+
+* Dataset (`data`): `iris_mod`
+* Coordinate System (`aes()`):
+  * x = `Sepal.Area`
+  * y = `Petal.Area`
+  * color = `Species`
+* Geom: `geom_point()`
+* Labels (`labs`) (optional):
+  * title = `"Sepal Area vs Petal Area by Flower Species"`
+  * subtitle = `"Area = Length * Width"`
+  * caption = `"data: iris"`
+* Theme (optional): `theme_minimal()`
+
+Now, let's put it all together into a final plot. Assembling plots in ggplot2 is as simple as building elements and adding them together with the `+` symbol. 
+
+```{r}
+#| warning: false
+
+library(ggplot2)
+
+ggplot(
+  data = iris_mod, 
+  mapping = aes(x = Sepal.Area, y = Petal.Area, color = Species)
+  ) +
+geom_point() +
+labs(
+  title = "Sepal Area vs Petal Area by Flower Species",
+  subtitle = "Area = Length * Width",
+  caption = "data: iris"
+) +
+theme_minimal()
+```
+
+Now that you have an understanding of the basics, the rest of this article will dive further in depth on each aspect of a plot building on these core concepts.
+
 ### Defining Aesthetic Values
 
 Aesthetics are variables within a ggplot object that take on different visual manifestations depending on the type of geom used in the plot. Types of aesthetic variables include:
@@ -345,7 +397,7 @@ library(ggplot2)
 # Creates a grid where rows = drv and columns = cyl
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
-  facet_grid(drv ~ cyl) +
+  facet_grid(drv ~ cyl, labeller = label_both) +
   theme_minimal()
 ```
 
