@@ -2,7 +2,11 @@
 Macsen to do:
 - write creating your report article
 - contribute to modeling data article (shared effort?)
+- restructure site org
+- add structure to "choosing your question"
+- add code examples to finalfit guide
 
 Gabi to do:
-- add code examples to finalfit guide
-- add structure to "choosing your question"
+- write example project summary article
+- contribute to modeling data article
+- write analyzing results article
