@@ -1,7 +1,7 @@
 
 Macsen to do:
-- Finish EDA article
-- Write ggplot2 guide article
+- write creating your report article
+- contribute to modeling data article (shared effort?)
 
 Gabi to do:
 - add code examples to finalfit guide
