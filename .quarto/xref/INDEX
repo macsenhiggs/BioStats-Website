@@ -40,5 +40,14 @@
   },
   "performing-eda.qmd": {
     "performing-eda.html": "7a8ab51e"
+  },
+  "modeling-data.qmd": {
+    "modeling-data.html": "cd156e6d"
+  },
+  "creating-your-report.qmd": {
+    "creating-your-report.html": "597417ee"
+  },
+  "analyzing-results.qmd": {
+    "analyzing-results.html": "a35a811d"
   }
 }

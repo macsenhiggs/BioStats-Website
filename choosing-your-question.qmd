@@ -2,7 +2,7 @@
 title: "Formulating a Research Question"
 ---
 
-When developing a research question, it is essential to systematically examine the available variables to determine exactly what needs to be assessed. Selecting a topic that aligns with personal interests or real-world experiences can significantly enhance a researcher's engagement and final analysis. 
+When developing a research question, it is essential to systematically examine the available variables to determine exactly what needs to be assessed. Selecting a topic that aligns with personal interests or real-world experiences can significantly enhance a researcher's engagement and final analysis.
 
 Initially, exploring a large dataset can feel overwhelming due to the sheer volume of numbers and variables. However, this preliminary phase is best used for brainstorming and identifying potential data stories rather than getting lost in the figures. To produce a manageable and impactful analysis, the broad scope must eventually be narrowed down significantly.
 
@@ -13,5 +13,17 @@ Consider a researcher who has an interest in healthcare deserts and mental healt
 
 To refine the scope even further, the researcher could limit their sample to young adults in the American South. Aligning the research parameters with a demographic or geographic region that the researcher understands intimately adds valuable context, insight, and personal connection to the study.
 :::
+
+If you are struggling to come up with a research question, it can be valuable to poke around your dataset for variables that could have some sort of notable connection. In [Example Project B](example-project-b.qmd), the student had been told by their professor that their project should be centered on opioid abuse, but was unsure about how to explore that premise. Poking around in their dataset, they noticed a variable `METHUSE` which determined whether the patient received prescription opioids for pain treatment or not. This led the student to formulate their research question:
+
+> "Among patients in treatment for opioid addiction, does prescribing opioid therapy have a positive or negative impact on outcome?"
+
+Which, when speaking in terms of the dataset, would translate to:
+
+> "For patients whose value for `SUB1` is an opioid, in what circumstances does `METHUSE` positively correlate with `SUCCESS`?"
+
+However, your first idea for a research question following this method may not be sufficiently relevant to build a project around. This usually becomes evident when [performing exploratory data analysis (EDA)](performing-eda.qmd), at which point the project would hopefully be sufficiently embryonic to pivot if necessary. As such, it could be good practice to keep a ranked list of research questions when first investigating your dataset to have backups if your first option doesn't seem promising.
+
+Another note: when you have an idea for your research question, try describing it to a classmate or your professor. Let them ask you whatever inquiries come to mind after your pitch, and it should become clearer whether your question has the strength to serve as the basis for a semester project.
 
 Ultimately, the most important element of choosing a research question is identifying the core narrative that the data is uniquely equipped to tell.

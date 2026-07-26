@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to finalfit – Stat 3125 ProjectGuide</title>
+<title>creating-your-report – Stat 3125 ProjectGuide</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -150,220 +115,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#use-cases-and-limitations" id="toc-use-cases-and-limitations" class="nav-link" data-scroll-target="#use-cases-and-limitations">Use Cases and Limitations</a></li>
-  <li><a href="#example-utilization" id="toc-example-utilization" class="nav-link" data-scroll-target="#example-utilization">Example Utilization</a></li>
-  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">An Introduction to finalfit</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
 
-
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>For Project A, The student utilized the finalfit package to create clean tables for their logistic regression model. finalfit is an open-source package to be used with R Studio to create clean, publication-ready tables for the data analysis model of your choosing. The package compiles your numbers into a table, grouping data in an efficient, automated way to present in a paper or poster. finalfit is a great programming package for beginners in data analytics research.</p>
-</section>
-<section id="use-cases-and-limitations" class="level3">
-<h3 class="anchored" data-anchor-id="use-cases-and-limitations">Use Cases and Limitations</h3>
-<div class="columns">
-<div class="column" style="width:45%;">
-<section id="finalfit-can" class="level4">
-<h4 class="anchored" data-anchor-id="finalfit-can">finalfit Can:</h4>
-<ul>
-<li>Summarize quantitative variable values by a categorical variable</li>
-<li>Summarize regression model results in table format</li>
-<li>Summarize regression model results into a plot</li>
-</ul>
-</section>
-</div><div class="column" style="width:10%;">
-<!-- This acts as empty spacer columns -->
-</div><div class="column" style="width:45%;">
-<section id="finalfit-cannot" class="level4">
-<h4 class="anchored" data-anchor-id="finalfit-cannot">finalfit Cannot:</h4>
-<ul>
-<li>Analyze results from advanced machine learning models</li>
-<li>Handle large amounts of levels for categorical variables</li>
-<li>Perform Bayesian modeling</li>
-</ul>
-</section>
-</div>
-</div>
-<p>Generally speaking, finalfit is most useful when [insert here]</p>
-</section>
-<section id="example-utilization" class="level3">
-<h3 class="anchored" data-anchor-id="example-utilization">Example Utilization</h3>
-<p>Let’s look at one example situation where finalfit can make data analysis much easier than it would be in base R. Let’s say we have the following question:</p>
-<blockquote class="blockquote">
-<p>“Using the <code>infert</code> dataset, which tracks infertility after spontaneous and induced abortion, what factors strongly indicate whether a patient experienced secondary infertility?”</p>
-</blockquote>
-<p>Finalfit is the perfect tool for a question like this. We can define <code>case</code>, which indicates whether a patient experienced secondary infertility (<code>1</code>) or served as a control (<code>0</code>), as our dependent variable. We can then select factors like <code>age</code> (in years), <code>parity</code> (count of total pregnancies), <code>induced</code> (number of prior induced abortions), and <code>spontaneous</code> (number of prior spontaneous abortions) as our explanatory variables.</p>
-<p>The R cells below demonstrate the process of implementing this vision:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(finalfit)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column types</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(infert)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   248 obs. of  8 variables:
- $ education     : Factor w/ 3 levels "0-5yrs","6-11yrs",..: 1 1 1 1 2 2 2 2 2 2 ...
- $ age           : num  26 42 39 34 35 36 23 32 21 28 ...
- $ parity        : num  6 1 6 4 3 4 1 2 1 2 ...
- $ induced       : num  1 1 2 2 1 2 0 0 0 0 ...
- $ case          : num  1 1 1 1 1 1 1 1 1 1 ...
- $ spontaneous   : num  2 0 0 0 1 1 0 0 1 0 ...
- $ stratum       : int  1 2 3 4 5 6 7 8 9 10 ...
- $ pooled.stratum: num  3 1 4 2 32 36 6 22 5 19 ...</code></pre>
-</div>
-</div>
-<p>One thing to note: we would like <code>case</code>, <code>induced</code>, and <code>spontaneous</code> to be treated by finalfit as categorical variables, but R recognizes them as numeric integers. We must correct that using <code>as.factor()</code> before we build our tables, which is made easy using dplyr’s <code>mutate()</code> function. (<a href="./dplyr-guide.html">What’s dplyr?</a>)</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data by casting categorical variables to factors</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> infert <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">case =</span> <span class="fu">factor</span>(case, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Case"</span>)),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(induced, spontaneous), as.factor)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define dependent and explanatory variables</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>dependent <span class="ot">&lt;-</span> <span class="st">"case"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>explanatory <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"parity"</span>, <span class="st">"induced"</span>, <span class="st">"spontaneous"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the full regression model table in one function call</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ff_table <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalfit</span>(dependent, explanatory)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print clean output</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(ff_table, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 9%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 25%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Dependent: case</th>
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Control</th>
-<th style="text-align: left;">Case</th>
-<th style="text-align: left;">OR (univariable)</th>
-<th style="text-align: left;">OR (multivariable)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">age</td>
-<td style="text-align: left;">Mean (SD)</td>
-<td style="text-align: left;">31.5 (5.3)</td>
-<td style="text-align: left;">31.5 (5.3)</td>
-<td style="text-align: left;">1.00 (0.95-1.05, p=0.956)</td>
-<td style="text-align: left;">1.05 (0.99-1.12, p=0.084)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">parity</td>
-<td style="text-align: left;">Mean (SD)</td>
-<td style="text-align: left;">2.1 (1.2)</td>
-<td style="text-align: left;">2.1 (1.3)</td>
-<td style="text-align: left;">1.02 (0.82-1.25, p=0.888)</td>
-<td style="text-align: left;">0.49 (0.34-0.69, p&lt;0.001)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">induced</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">96 (67.1)</td>
-<td style="text-align: left;">47 (32.9)</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">45 (66.2)</td>
-<td style="text-align: left;">23 (33.8)</td>
-<td style="text-align: left;">1.04 (0.56-1.91, p=0.890)</td>
-<td style="text-align: left;">3.12 (1.44-7.03, p=0.005)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">24 (64.9)</td>
-<td style="text-align: left;">13 (35.1)</td>
-<td style="text-align: left;">1.11 (0.51-2.34, p=0.794)</td>
-<td style="text-align: left;">11.09 (3.52-36.81, p&lt;0.001)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">spontaneous</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">113 (80.1)</td>
-<td style="text-align: left;">28 (19.9)</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">40 (56.3)</td>
-<td style="text-align: left;">31 (43.7)</td>
-<td style="text-align: left;">3.13 (1.68-5.88, p&lt;0.001)</td>
-<td style="text-align: left;">6.68 (3.16-14.75, p&lt;0.001)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">12 (33.3)</td>
-<td style="text-align: left;">24 (66.7)</td>
-<td style="text-align: left;">8.07 (3.67-18.63, p&lt;0.001)</td>
-<td style="text-align: left;">47.68 (14.88-173.68, p&lt;0.001)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>This table unlocks a litany of insights on its own, such as:</p>
-<ul>
-<li>With all other variables controlled, having 1 or 2 induced abortions increases a patient’s odds of secondary infertility by factors of 3.12 and 11.09 respectively, both with statistically significant <em>p</em> values.</li>
-<li>Parity becomes a protective variable when adjusting for prior abortions, decreasing a woman’s odds of secondary infertility by approximately 51% for each additional pregnancy they’ve had.</li>
-<li>Age has no significant impact on secondary infertility, as its univariate and multivariate <em>p</em> values are 0.956 and 0.084 respectively, both above the maximum threshold of 0.05 for a relationship to be statistically significant.</li>
-</ul>
-<p>This is just one example of how finalfit can help data scientists like yourself. The package also offers a variety of modeling tools, so consider utilizing it if you find yourself wanting to analyze predictors of a variable’s outcome during your research.</p>
-</section>
-<section id="learn-more" class="level3">
-<h3 class="anchored" data-anchor-id="learn-more">Learn More</h3>
-<p>If you would like to learn more about finalfit, visit <a href="https://finalfit.org/index.html">its website</a> for more information.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

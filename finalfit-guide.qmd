@@ -7,12 +7,14 @@ title: "An Introduction to finalfit"
 For Project A, The student utilized the finalfit package to create clean tables for their logistic regression model. finalfit is an open-source package to be used with R Studio to create clean, publication-ready tables for the data analysis model of your choosing. The package compiles your numbers into a table, grouping data in an efficient, automated way to present in a paper or poster. finalfit is a great programming package for beginners in data analytics research.
 
 ### Use Cases and Limitations
-::: {.columns}
+
+:::::: columns
 ::: {.column width="45%"}
 #### finalfit Can:
-* Summarize quantitative variable values by a categorical variable
-* Summarize regression model results in table format
-* Summarize regression model results into a plot
+
+- Summarize quantitative variable values by a categorical variable
+- Summarize regression model results in table format
+- Summarize regression model results into a plot
 :::
 
 ::: {.column width="10%"}
@@ -21,18 +23,68 @@ For Project A, The student utilized the finalfit package to create clean tables 
 
 ::: {.column width="45%"}
 #### finalfit Cannot:
-* Analyze results from advanced machine learning models
-* Handle large amounts of levels for categorical variables
-* Perform Bayesian modeling
-:::
-:::
 
-Generally speaking, finalfit is most useful when [insert here]
+- Analyze results from advanced machine learning models
+- Handle large amounts of levels for categorical variables
+- Perform Bayesian modeling
+:::
+::::::
+
+Generally speaking, finalfit is most useful when \[insert here\]
 
 ### Example Utilization
 
-Let's look at one example situation where finalfit can make data analysis much easier than it would be in base R.
+Let's look at one example situation where finalfit can make data analysis much easier than it would be in base R. Let's say we have the following question:
+
+> "Using the `infert` dataset, which tracks infertility after spontaneous and induced abortion, what factors strongly indicate whether a patient experienced secondary infertility?"
+
+Finalfit is the perfect tool for a question like this. We can define `case`, which indicates whether a patient experienced secondary infertility (`1`) or served as a control (`0`), as our dependent variable. We can then select factors like `age` (in years), `parity` (count of total pregnancies), `induced` (number of prior induced abortions), and `spontaneous` (number of prior spontaneous abortions) as our explanatory variables.
+
+The R cells below demonstrate the process of implementing this vision:
+
+```{r}
+#| warning: false
+
+# Import Libraries
+library(finalfit)
+library(dplyr)
+
+# Check column types
+str(infert)
+```
+
+One thing to note: we would like `case`, `induced`, and `spontaneous` to be treated by finalfit as categorical variables, but R recognizes them as numeric integers. We must correct that using `as.factor()` before we build our tables, which is made easy using dplyr's `mutate()` function. ([What's dplyr?](dplyr-guide.qmd))
+
+```{r}
+#| warning: false
+
+# Prepare data by casting categorical variables to factors
+df <- infert |> 
+  mutate(
+    case = factor(case, levels = c(0, 1), labels = c("Control", "Case")),
+    across(c(induced, spontaneous), as.factor)
+  )
+
+# Define dependent and explanatory variables
+dependent <- "case"
+explanatory <- c("age", "parity", "induced", "spontaneous")
+
+# Generate the full regression model table in one function call
+ff_table <- df |>
+  finalfit(dependent, explanatory)
+
+# Print clean output
+knitr::kable(ff_table, row.names = FALSE)
+```
+
+This table unlocks a litany of insights on its own, such as:
+
+* With all other variables controlled, having 1 or 2 induced abortions increases a patient's odds of secondary infertility by factors of 3.12 and 11.09 respectively, both with statistically significant *p* values.
+* Parity becomes a protective variable when adjusting for prior abortions, decreasing a woman's odds of secondary infertility by approximately 51% for each additional pregnancy they've had.
+* Age has no significant impact on secondary infertility, as its univariate and multivariate *p* values are 0.956 and 0.084 respectively, both above the maximum threshold of 0.05 for a relationship to be statistically significant.
+
+This is just one example of how finalfit can help data scientists like yourself. The package also offers a variety of modeling tools, so consider utilizing it if you find yourself wanting to analyze predictors of a variable's outcome during your research.
 
 ### Learn More
 
-If you would like to learn more about finalfit, visit [its website](https://finalfit.org/index.html) for more information.
+If you would like to learn more about finalfit, visit [its website](https://finalfit.org/index.html) for more information. 
