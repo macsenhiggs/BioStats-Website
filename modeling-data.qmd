@@ -1,0 +1,17 @@
+---
+title: "Modeling Data"
+---
+
+### Cleaning Data
+
+### Choosing a Model
+
+### Linear Modeling (lm, mlm, glm)
+
+### Time-to-Event Modeling (survival)
+
+### Mixed-Effects Modeling (lmer, glmer)
+
+### Non-Parametric Machine Learning Models (knn, randomforest)
+
+### Other Noteworthy Models
