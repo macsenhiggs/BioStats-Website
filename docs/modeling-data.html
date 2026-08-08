@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -163,12 +198,666 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="time-to-event-modeling-survival" class="level3">
 <h3 class="anchored" data-anchor-id="time-to-event-modeling-survival">Time-to-Event Modeling (survival)</h3>
+<p>Time-to-event modeling, also known as survival analysis, is effective at adding a temporal element to predictive modeling. Whereas other binary output models are structured to predict the likelihood of a certain event happening, time-to-event modeling predicts the likelihood of an event happening at each passing unit of time. Survival modeling is also equipped to handle the issue of censored data. Many datasets where survival modeling would be effective only have two possible outcomes: the event in question eventually happens, or the observation is eventually cut off (censored) and the final outcome is unknown. For censored outcomes, the model will incorporate the information that is available to it (the length of time wherein an event did not occur) when developing its probability curve.</p>
+<p>When using time-to-event modeling in R, it is most common to use the <code>survival</code> package. The package includes an example dataset, <code>lung</code>, which documents survival data from over 200 advanced lung cancer patients. Let’s create a survival model based on <code>lung</code> to estimate a patient’s likelihood of survival at each passing unit of time.</p>
+<p>By using the command <code>?lung</code> in R, we can learn the following information about our dataset:</p>
+<ul>
+<li>Patient outcome is denoted as <code>status</code>, with 1 = censored and 2 = dead.</li>
+<li><code>time</code> denotes the length of time in days that the patient survived before dying or being censored.</li>
+<li><code>ph.ecog</code> denotes the patient’s ECOG performance score, with 0 being the best (asymptomatic), and 4 being the worst (bed-bound).</li>
+<li><code>ph.karno</code> and <code>pat.karno</code> denote the physician and patient’s subjective performance scores for the patient’s status respectively on a scale of 1-100.</li>
+<li><code>meal.cal</code> denotes the average number of calories consumed per meal during treatment and <code>wt.loss</code> denotes the patient’s weight loss in pounds in the last six months.</li>
+</ul>
+<p>We will build our model around <code>status</code> and <code>time</code>, although we can examine the impact of the other variables later.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> lung <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lung uses 1 and 2 for outcomes, but we want 0 and 1 for modeling</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">status =</span> <span class="fu">recode</span>(status, <span class="st">'1'</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recode sex values for easier interpretation</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">recode</span>(sex, <span class="st">'1'</span> <span class="ot">=</span> <span class="st">'M'</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">'F'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Surv() method creates a survival object</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># survfit() fits the object to the data</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>survival_model <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dataset)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(survival_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 17
+ $ n        : int 228
+ $ time     : num [1:186] 5 11 12 13 15 26 30 31 53 54 ...
+ $ n.risk   : num [1:186] 228 227 224 223 221 220 219 218 217 215 ...
+ $ n.event  : num [1:186] 1 3 1 2 1 1 1 1 2 1 ...
+ $ n.censor : num [1:186] 0 0 0 0 0 0 0 0 0 0 ...
+ $ surv     : num [1:186] 0.996 0.982 0.978 0.969 0.965 ...
+ $ std.err  : num [1:186] 0.0044 0.00885 0.00992 0.01179 0.01263 ...
+ $ cumhaz   : num [1:186] 0.00439 0.0176 0.02207 0.03103 0.03556 ...
+ $ std.chaz : num [1:186] 0.00439 0.0088 0.00987 0.01173 0.01257 ...
+ $ type     : chr "right"
+ $ logse    : logi TRUE
+ $ conf.int : num 0.95
+ $ conf.type: chr "log"
+ $ lower    : num [1:186] 0.987 0.966 0.959 0.947 0.941 ...
+ $ upper    : num [1:186] 1 1 0.997 0.992 0.989 ...
+ $ t0       : num 0
+ $ call     : language survfit(formula = Surv(time, status) ~ 1, data = dataset)
+ - attr(*, "class")= chr "survfit"</code></pre>
+</div>
+</div>
+<p>We can probably infer some conclusions from these numbers, but let’s visualize them and get a better understanding of our model’s curve.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsurvfit)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Different fitting method used for ease of plotting</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit2</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dataset) <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Distinct plotting function for survival models</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsurvfit</span>() <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Days"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Overall survival probability"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Helper function to see CI</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_confidence_interval</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="modeling-data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s ask another question: How does our model predict the likelihood of survival at biannual benchmarks? To answer this, we can use the <code>tbl_survfit()</code> function from the <code>gtsummary</code>package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>survival_model <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_survfit</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate probability every 6 months for first 2 years</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">times =</span> <span class="fu">c</span>(<span class="fl">182.5</span>, <span class="dv">365</span>, <span class="fl">547.5</span>, <span class="dv">720</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">label_header =</span> <span class="st">"**{time} Days** (95% CI)"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="hhyqqggmvs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hhyqqggmvs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hhyqqggmvs thead, #hhyqqggmvs tbody, #hhyqqggmvs tfoot, #hhyqqggmvs tr, #hhyqqggmvs td, #hhyqqggmvs th {
+  border-style: none;
+}
+
+#hhyqqggmvs p {
+  margin: 0;
+  padding: 0;
+}
+
+#hhyqqggmvs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hhyqqggmvs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hhyqqggmvs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hhyqqggmvs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hhyqqggmvs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hhyqqggmvs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hhyqqggmvs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hhyqqggmvs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hhyqqggmvs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hhyqqggmvs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hhyqqggmvs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hhyqqggmvs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hhyqqggmvs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hhyqqggmvs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hhyqqggmvs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhyqqggmvs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hhyqqggmvs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hhyqqggmvs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hhyqqggmvs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhyqqggmvs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hhyqqggmvs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhyqqggmvs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hhyqqggmvs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhyqqggmvs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhyqqggmvs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhyqqggmvs .gt_left {
+  text-align: left;
+}
+
+#hhyqqggmvs .gt_center {
+  text-align: center;
+}
+
+#hhyqqggmvs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hhyqqggmvs .gt_font_normal {
+  font-weight: normal;
+}
+
+#hhyqqggmvs .gt_font_bold {
+  font-weight: bold;
+}
+
+#hhyqqggmvs .gt_font_italic {
+  font-style: italic;
+}
+
+#hhyqqggmvs .gt_super {
+  font-size: 65%;
+}
+
+#hhyqqggmvs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hhyqqggmvs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hhyqqggmvs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hhyqqggmvs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hhyqqggmvs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hhyqqggmvs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hhyqqggmvs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hhyqqggmvs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hhyqqggmvs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>182.5 Days</strong> (95% CI)</th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>365 Days</strong> (95% CI)</th>
+<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>547.5 Days</strong> (95% CI)</th>
+<th id="stat_4" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>720 Days</strong> (95% CI)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Overall</td>
+<td class="gt_row gt_center" headers="stat_1">71% (65%, 77%)</td>
+<td class="gt_row gt_center" headers="stat_2">41% (34%, 49%)</td>
+<td class="gt_row gt_center" headers="stat_3">26% (20%, 33%)</td>
+<td class="gt_row gt_center" headers="stat_4">12% (7.9%, 20%)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Lastly, let’s analyze how survival likelihoods vary across qualitative or quantitative variables. The <code>survdiff()</code> function demonstrates how survival performance differs along qualitative variable lines. For example, the following excerpt compares how men and women fare compared to predicted survival rates:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new Surv object with sex as dividing line</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> sex, <span class="at">data =</span> dataset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+survdiff(formula = Surv(time, status) ~ sex, data = dataset)
+
+        N Observed Expected (O-E)^2/E (O-E)^2/V
+sex=F  90       53     73.4      5.68      10.3
+sex=M 138      112     91.6      4.55      10.3
+
+ Chisq= 10.3  on 1 degrees of freedom, p= 0.001 </code></pre>
+</div>
+</div>
+<p>This output demonstrates that, in a model that doesn’t account for sex by default, women have fewer observed deaths than projected, and the opposite is true for men. Considering that <em>p = 0.001</em>, it appears statistically significant that female patients are at a survival advantage when dealing with lung cancer compared to men.</p>
+<p>If we want to measure the impact of a quantitative value on survival, the best course of action is to create a Cox regression model. The <code>coxph</code> function, which is included in the <code>survival</code> package, allows the user to create a Cox model based on an existing <code>Surv</code> object. The following example examines the effects of age on survival rates relative to predictions:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new Surv object with age as dividing line</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fit_cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> age, <span class="at">data =</span> dataset)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_cox)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+coxph(formula = Surv(time, status) ~ age, data = dataset)
+
+  n= 228, number of events= 165 
+
+        coef exp(coef) se(coef)     z Pr(&gt;|z|)  
+age 0.018720  1.018897 0.009199 2.035   0.0419 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    exp(coef) exp(-coef) lower .95 upper .95
+age     1.019     0.9815     1.001     1.037
+
+Concordance= 0.55  (se = 0.025 )
+Likelihood ratio test= 4.24  on 1 df,   p=0.04
+Wald test            = 4.14  on 1 df,   p=0.04
+Score (logrank) test = 4.15  on 1 df,   p=0.04</code></pre>
+</div>
+</div>
+<p>As this model’s value for <code>exp(coef)</code>, which represents the odds ratio of patients at <em>n</em> years relative to <em>n-1</em> years (all other factors held constant) is 1.019, each additional year of age increases a patient’s risk of death by 1.9%. Additionally, a 95% confidence interval of <em>(1.001, 1.037)</em> demonstrates a 95% confidence that the true hazard of an increase in age results in an increase in risk. Finally, a <em>p</em> value of 0.04 shows that these findings are statistically significant.</p>
+<p>In totality, the <code>survival</code> package is an excellent option for modeling any dataset that focuses on the progressing hazard of a key event.</p>
 </section>
 <section id="mixed-effects-modeling-lmer-glmer" class="level3">
 <h3 class="anchored" data-anchor-id="mixed-effects-modeling-lmer-glmer">Mixed-Effects Modeling (lmer, glmer)</h3>
 </section>
 <section id="non-parametric-machine-learning-models-knn-randomforest" class="level3">
 <h3 class="anchored" data-anchor-id="non-parametric-machine-learning-models-knn-randomforest">Non-Parametric Machine Learning Models (knn, randomforest)</h3>
+<p>k-Nearest Neighbors (k-NN) is a non-parametric method that utilizes supervised machine learning to classify data entries based on similarity to other entries. The <code>class</code> package in R, which contains a variety of machine learning functions, includes a method for building k-NN models, and will serve as the basis for our example implementation.</p>
+<p>Let us imagine that we want to be able to classify flower species from the <code>iris</code> dataset from base principles. We can train a k-NN model with three defined classes and test its accuracy. This will require the application of a few distinct aspects of machine learning, such as:</p>
+<ul>
+<li><strong>Input Normalization</strong> - scaling numerical input values relative to the dataset’s observed maximum and minimum values for a given variable on a (0,1) or (-1, 1) scale.</li>
+<li><strong>Train-Test Dataset Splits</strong> - isolating a minority of entries in a dataset to exclude from training and use to test the accuracy of the final model.</li>
+<li><strong>Confusion Matrices</strong> - tables that highlight inaccurate classification predictions that machine learning models make.</li>
+</ul>
+<p>With these concepts defined, we can begin to build our model. First, we will normalize the dataset’s numeric columns so they are machine learning ready.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>iris_norm <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) (x <span class="sc">-</span> <span class="fu">min</span>(x)) <span class="sc">/</span> (<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x)))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we will split the dataset into an 80/20 train/test ratio using the <code>sample()</code> method.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>train_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(iris_norm)), <span class="at">size =</span> <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(iris_norm))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> iris_norm <span class="sc">|&gt;</span> <span class="fu">slice</span>(train_indices)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>test_df  <span class="ot">&lt;-</span> iris_norm <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span>train_indices)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next, we will build the k-NN model itself. There are 4 parameters we need to define within the <code>knn()</code> method:</p>
+<ul>
+<li><code>train</code> - the data to be used for training</li>
+<li><code>test</code> - the data to be used for testing</li>
+<li><code>cl</code> - the classification variable to predict</li>
+<li><code>k</code> - the number of “neighborhoods” for the model to classify entries into</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">knn</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">train =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sepal.Length<span class="sc">:</span>Petal.Width),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">test  =</span> test_df  <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sepal.Length<span class="sc">:</span>Petal.Width),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cl    =</span> train_df<span class="sc">$</span>Species,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">k     =</span> <span class="dv">3</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Lastly, we will evaluate the model by comparing its predictions to the test dataset’s actual classifications.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">Actual =</span> test_df<span class="sc">$</span>Species, <span class="at">Predicted =</span> predictions)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Predicted
+Actual       setosa versicolor virginica
+  setosa         10          0         0
+  versicolor      0         14         1
+  virginica       0          0         5</code></pre>
+</div>
+</div>
+<p>As the table shows, the model only made one incorrect prediction, a versicolor flower that was predicted to be virginica. Testing performance may vary due to seeding variance other factors, but in this case the model performed quite well.</p>
+<p>All in all, k-NN models are strong options for projects where you would like to predict classifications based on a wholistic data frame.</p>
 </section>
 <section id="other-noteworthy-models" class="level3">
 <h3 class="anchored" data-anchor-id="other-noteworthy-models">Other Noteworthy Models</h3>
