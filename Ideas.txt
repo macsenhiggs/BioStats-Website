@@ -13,3 +13,10 @@ General Plan:
 - Macsen finishes his share and wraps site up in a bow by Friday 8/7
 - Schedule meeting w/ Professor Zhang Monday 8/10 at the very latest
 - Apply any corrections from Professor Zhang ASAP following meeting and finish project
+
+
+
+gabi's written articles:
+- relating to class material - appendix article
+- Modeling data - lm section of modeling data article
+- rest of content - example project A review and summary

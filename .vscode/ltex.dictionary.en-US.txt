@@ -9,3 +9,5 @@ geoms
 ColorBrewer
 Finalfit
 k-NN
+Recoding
+randomforest

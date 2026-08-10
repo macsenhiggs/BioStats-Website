@@ -1,0 +1,172 @@
+---
+title: "Cleaning Data"
+---
+
+When you first open up your dataset for the first time, it might look messy. Some datasets have ID-based nondescript variable values, duplicitous columns, and other frustrating traits that can make them difficult to work with. You may find a way to perform the analysis you want to with the dataset remaining as-is, but it is generally recommended to perform data cleaning before starting work on a project.
+
+Data cleaning includes, but is not limited to:
+
+* Reforming or removing missing values
+* Cleaning outliers
+* Normalizing features
+* Recoding features
+* Pivoting columns
+
+This article will guide you through the data cleaning process on an example dataset, `who`, from the `tidyr` package. The dataset is a subset of the World Health Organization's Global Tuberculosis Report.
+
+First, let's get a glimpse at the dataset in its original form:
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+
+head(who)
+
+```
+
+Although it can be difficult to tell initially (and this is where using the help command `?who` can be useful), each row is a yearly log of new TB cases by three grouping variables: diagnosis method, gender, and age group. However, each possible combination of these variables has its own column, which makes the data hard to read at first. Using tools from tidyverse, we are going to transform this dataset into something much more workable.
+
+First, instead of each `new_` value getting its own column, we want to pivot them into new rows. The `pivot_longer()` function can do just that.
+
+```{r}
+#| warning: false
+
+clean_who_1 <- who |>
+  pivot_longer(
+    # picks all columns methodically by naming convention
+    cols = starts_with("new"),
+    # title column preface
+    names_to = "measurement_code",
+    # value column preface
+    values_to = "case_count",
+    # delete empty rows
+    values_drop_na = TRUE 
+  )
+
+head(clean_who_1)
+
+```
+
+Now we have a row for each type of measurement code and the number of cases it accumulated for each year in each country. However, the values for `measurement_code` are hard to read at first. We want to split that column into three, one for each group, so that we can divide along those lines later in our work if necessary.
+
+Before we create these grouping variables, we need to ensure homogeneity across the board. Let's inspect our measurement codes as they currently stand:
+
+```{r}
+#| warning: false
+
+unique(clean_who_1$measurement_code)
+
+```
+
+For one reason or another, we have a mismatch: most codes start with `new_[method]`, but for relapse (`rel`) cases, they start with `newrel`. We need to correct this before we proceed:
+
+```{r}
+#| warning: false
+
+clean_who_2 <- clean_who_1 |>
+  mutate(
+    # replace all instances of `newrel` with `new_rel`
+    measurement_code = str_replace(
+        measurement_code, "newrel", "new_rel"
+        )
+  )
+
+unique(clean_who_2$measurement_code)
+```
+
+Now everything is uniform, and we can start splitting up our columns. We can use the underscore in the codes as a divider to create new columns values like so:
+
+```{r}
+#| warning: false
+
+clean_who_3 <- clean_who_2 |>
+  separate_wider_delim(
+    # starter column
+    cols = measurement_code,
+    # delimiting (dividing) string
+    delim = "_",
+    # new columns (in sequential order)
+    names = c("case_type", "diagnosis_method", "sex_age")
+  )
+
+head(clean_who_3)
+```
+
+That's better, but since sex and age group weren't divided by an underscore, we will want to use regex, a specialized string formatting system that matches other strings to logical conditions, to draw the lines for the split.
+
+```{r}
+#| warning: false
+
+clean_who_4 <- clean_who_3 |>
+  separate_wider_regex(
+    cols = sex_age,
+    # character values go in sex
+    # numerical values go in age_group
+    patterns = c(sex = "^[a-z]", age_group = "\\d+$")
+  )
+
+head(clean_who_4)
+```
+
+The data now has the visual structure that we wanted, but it could make its information easier to understand at a glance. To clean the data further, we would like to:
+
+* Make `age_group` look more like an actual range of ages
+* Elaborate on `diagnosis_method`
+* Assign `sex` as "Male" or "Female", not 'm' or 'f'
+* Convert logically categorical variables like `country` to actual factors, not strings
+
+The following code does just that:
+
+```{r}
+#| warning: false
+
+clean_who_5 <- clean_who_4 |>
+  mutate(
+    # use recode() to reassign based on existing value
+    age_group = recode(
+      age_group,
+      "014"  = "0-14",
+      "1524" = "15-24",
+      "2534" = "25-34",
+      "3544" = "35-44",
+      "4554" = "45-54",
+      "5564" = "55-64",
+      "65"   = "65+",
+      # default case for atypical values
+      .default = age_group
+    ),
+    diagnosis_method = recode(
+        diagnosis_method,
+        "rel" = "relapse",
+        "sn" = "negative smear",
+        "sp" = "positive smear",
+        "ep" = "extrapulmonary"
+    ),
+    # logical check to reassign sex
+    sex = if_else(sex == "m", "Male", "Female"),
+    # cast character columns to factors
+    across(where(is.character), as.factor)
+  )
+
+head(clean_who_5)
+```
+
+Lastly, we can omit columns we deem redundant from our dataset. In this case, `iso2` and `iso3` don't appear necessary for further exploration, and we can make our final change to the dataset.
+
+```{r}
+#| warning: false
+
+clean_who_final <- clean_who_5 |>
+  # deselect columns with '-'
+  select(-iso2, -iso3)
+
+head(clean_who_final)
+```
+
+Now, we have a much cleaner dataset that is ready for advanced modeling and analysis. The next time you load up a new dataset, as yourself, "how could I make this easier to work with?" Like all steps of data science, the more times you practice cleaning data, the easier it will become.
+
+
+::: {.callout-note appearance="simple"}
+Want to learn more and have a handy guide for further data cleaning? Check out [this article](https://www.epirhandbook.com/en/new_pages/cleaning.html) from The Epidemiologist R Handbook.
+:::

@@ -2,8 +2,6 @@
 title: "Modeling Data"
 ---
 
-### Cleaning Data
-
 ### Choosing a Model
 
 ### Linear Modeling (lm, mlm, glm)
@@ -105,8 +103,6 @@ As this model's value for `exp(coef)`, which represents the odds ratio of patien
 
 In totality, the `survival` package is an excellent option for modeling any dataset that focuses on the progressing hazard of a key event.
 
-### Mixed-Effects Modeling (lmer, glmer)
-
 ### Non-Parametric Machine Learning Modeling (knn)
 
 k-Nearest Neighbors (k-NN) is a non-parametric method that utilizes supervised machine learning to classify data entries based on similarity to other entries. The `class` package in R, which contains a variety of machine learning functions, includes a method for building k-NN models, and will serve as the basis for our example implementation.
@@ -177,3 +173,9 @@ All in all, k-NN models are strong options for projects where you would like to 
 <!-- do randomforest if you have time after finishing everything else?-->
 
 ### Other Noteworthy Models
+
+Other models worth considering not mentioned in this article include:
+
+* randomforest ([learn more](https://www.projectpro.io/recipes/perform-random-forest-r))
+* Linear mixed effects modeling ([learn more](https://www.rdocumentation.org/packages/lme4/versions/2.0-6/topics/lmer))
+* 

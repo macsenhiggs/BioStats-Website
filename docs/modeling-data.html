@@ -155,12 +155,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link active" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
-  <li><a href="#choosing-a-model" id="toc-choosing-a-model" class="nav-link" data-scroll-target="#choosing-a-model">Choosing a Model</a></li>
+  <li><a href="#choosing-a-model" id="toc-choosing-a-model" class="nav-link active" data-scroll-target="#choosing-a-model">Choosing a Model</a></li>
   <li><a href="#linear-modeling-lm-mlm-glm" id="toc-linear-modeling-lm-mlm-glm" class="nav-link" data-scroll-target="#linear-modeling-lm-mlm-glm">Linear Modeling (lm, mlm, glm)</a></li>
   <li><a href="#time-to-event-modeling-survival" id="toc-time-to-event-modeling-survival" class="nav-link" data-scroll-target="#time-to-event-modeling-survival">Time-to-Event Modeling (survival)</a></li>
-  <li><a href="#mixed-effects-modeling-lmer-glmer" id="toc-mixed-effects-modeling-lmer-glmer" class="nav-link" data-scroll-target="#mixed-effects-modeling-lmer-glmer">Mixed-Effects Modeling (lmer, glmer)</a></li>
-  <li><a href="#non-parametric-machine-learning-models-knn-randomforest" id="toc-non-parametric-machine-learning-models-knn-randomforest" class="nav-link" data-scroll-target="#non-parametric-machine-learning-models-knn-randomforest">Non-Parametric Machine Learning Models (knn, randomforest)</a></li>
+  <li><a href="#non-parametric-machine-learning-modeling-knn" id="toc-non-parametric-machine-learning-modeling-knn" class="nav-link" data-scroll-target="#non-parametric-machine-learning-modeling-knn">Non-Parametric Machine Learning Modeling (knn)</a></li>
   <li><a href="#other-noteworthy-models" id="toc-other-noteworthy-models" class="nav-link" data-scroll-target="#other-noteworthy-models">Other Noteworthy Models</a></li>
   </ul>
 </nav>
@@ -187,9 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="cleaning-data" class="level3">
-<h3 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h3>
-</section>
 <section id="choosing-a-model" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-model">Choosing a Model</h3>
 </section>
@@ -281,23 +276,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">label_header =</span> <span class="st">"**{time} Days** (95% CI)"</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="hhyqqggmvs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hhyqqggmvs table {
+<div id="hiulzkxvwd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hiulzkxvwd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hhyqqggmvs thead, #hhyqqggmvs tbody, #hhyqqggmvs tfoot, #hhyqqggmvs tr, #hhyqqggmvs td, #hhyqqggmvs th {
+#hiulzkxvwd thead, #hiulzkxvwd tbody, #hiulzkxvwd tfoot, #hiulzkxvwd tr, #hiulzkxvwd td, #hiulzkxvwd th {
   border-style: none;
 }
 
-#hhyqqggmvs p {
+#hiulzkxvwd p {
   margin: 0;
   padding: 0;
 }
 
-#hhyqqggmvs .gt_table {
+#hiulzkxvwd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -323,12 +318,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_caption {
+#hiulzkxvwd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hhyqqggmvs .gt_title {
+#hiulzkxvwd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -340,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#hhyqqggmvs .gt_subtitle {
+#hiulzkxvwd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -352,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#hhyqqggmvs .gt_heading {
+#hiulzkxvwd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -364,13 +359,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_bottom_border {
+#hiulzkxvwd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_col_headings {
+#hiulzkxvwd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -385,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_col_heading {
+#hiulzkxvwd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -405,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hhyqqggmvs .gt_column_spanner_outer {
+#hiulzkxvwd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -417,15 +412,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#hhyqqggmvs .gt_column_spanner_outer:first-child {
+#hiulzkxvwd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hhyqqggmvs .gt_column_spanner_outer:last-child {
+#hiulzkxvwd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hhyqqggmvs .gt_column_spanner {
+#hiulzkxvwd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -437,11 +432,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#hhyqqggmvs .gt_spanner_row {
+#hiulzkxvwd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hhyqqggmvs .gt_group_heading {
+#hiulzkxvwd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -467,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#hhyqqggmvs .gt_empty_group_heading {
+#hiulzkxvwd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -482,15 +477,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#hhyqqggmvs .gt_from_md > :first-child {
+#hiulzkxvwd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hhyqqggmvs .gt_from_md > :last-child {
+#hiulzkxvwd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hhyqqggmvs .gt_row {
+#hiulzkxvwd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -509,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hhyqqggmvs .gt_stub {
+#hiulzkxvwd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -522,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hhyqqggmvs .gt_stub_row_group {
+#hiulzkxvwd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -536,15 +531,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#hhyqqggmvs .gt_row_group_first td {
+#hiulzkxvwd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hhyqqggmvs .gt_row_group_first th {
+#hiulzkxvwd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hhyqqggmvs .gt_summary_row {
+#hiulzkxvwd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -554,16 +549,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hhyqqggmvs .gt_first_summary_row {
+#hiulzkxvwd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_first_summary_row.thick {
+#hiulzkxvwd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hhyqqggmvs .gt_last_summary_row {
+#hiulzkxvwd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_grand_summary_row {
+#hiulzkxvwd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -583,7 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hhyqqggmvs .gt_first_grand_summary_row {
+#hiulzkxvwd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -593,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_last_grand_summary_row_top {
+#hiulzkxvwd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -603,11 +598,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_striped {
+#hiulzkxvwd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hhyqqggmvs .gt_table_body {
+#hiulzkxvwd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -616,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_footnotes {
+#hiulzkxvwd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -630,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_footnote {
+#hiulzkxvwd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -639,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hhyqqggmvs .gt_sourcenotes {
+#hiulzkxvwd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -653,7 +648,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hhyqqggmvs .gt_sourcenote {
+#hiulzkxvwd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -661,72 +656,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hhyqqggmvs .gt_left {
+#hiulzkxvwd .gt_left {
   text-align: left;
 }
 
-#hhyqqggmvs .gt_center {
+#hiulzkxvwd .gt_center {
   text-align: center;
 }
 
-#hhyqqggmvs .gt_right {
+#hiulzkxvwd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hhyqqggmvs .gt_font_normal {
+#hiulzkxvwd .gt_font_normal {
   font-weight: normal;
 }
 
-#hhyqqggmvs .gt_font_bold {
+#hiulzkxvwd .gt_font_bold {
   font-weight: bold;
 }
 
-#hhyqqggmvs .gt_font_italic {
+#hiulzkxvwd .gt_font_italic {
   font-style: italic;
 }
 
-#hhyqqggmvs .gt_super {
+#hiulzkxvwd .gt_super {
   font-size: 65%;
 }
 
-#hhyqqggmvs .gt_footnote_marks {
+#hiulzkxvwd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hhyqqggmvs .gt_asterisk {
+#hiulzkxvwd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hhyqqggmvs .gt_indent_1 {
+#hiulzkxvwd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hhyqqggmvs .gt_indent_2 {
+#hiulzkxvwd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hhyqqggmvs .gt_indent_3 {
+#hiulzkxvwd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hhyqqggmvs .gt_indent_4 {
+#hiulzkxvwd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hhyqqggmvs .gt_indent_5 {
+#hiulzkxvwd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hhyqqggmvs .katex-display {
+#hiulzkxvwd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hhyqqggmvs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hiulzkxvwd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -799,11 +794,8 @@ Score (logrank) test = 4.15  on 1 df,   p=0.04</code></pre>
 <p>As this model’s value for <code>exp(coef)</code>, which represents the odds ratio of patients at <em>n</em> years relative to <em>n-1</em> years (all other factors held constant) is 1.019, each additional year of age increases a patient’s risk of death by 1.9%. Additionally, a 95% confidence interval of <em>(1.001, 1.037)</em> demonstrates a 95% confidence that the true hazard of an increase in age results in an increase in risk. Finally, a <em>p</em> value of 0.04 shows that these findings are statistically significant.</p>
 <p>In totality, the <code>survival</code> package is an excellent option for modeling any dataset that focuses on the progressing hazard of a key event.</p>
 </section>
-<section id="mixed-effects-modeling-lmer-glmer" class="level3">
-<h3 class="anchored" data-anchor-id="mixed-effects-modeling-lmer-glmer">Mixed-Effects Modeling (lmer, glmer)</h3>
-</section>
-<section id="non-parametric-machine-learning-models-knn-randomforest" class="level3">
-<h3 class="anchored" data-anchor-id="non-parametric-machine-learning-models-knn-randomforest">Non-Parametric Machine Learning Models (knn, randomforest)</h3>
+<section id="non-parametric-machine-learning-modeling-knn" class="level3">
+<h3 class="anchored" data-anchor-id="non-parametric-machine-learning-modeling-knn">Non-Parametric Machine Learning Modeling (knn)</h3>
 <p>k-Nearest Neighbors (k-NN) is a non-parametric method that utilizes supervised machine learning to classify data entries based on similarity to other entries. The <code>class</code> package in R, which contains a variety of machine learning functions, includes a method for building k-NN models, and will serve as the basis for our example implementation.</p>
 <p>Let us imagine that we want to be able to classify flower species from the <code>iris</code> dataset from base principles. We can train a k-NN model with three defined classes and test its accuracy. This will require the application of a few distinct aspects of machine learning, such as:</p>
 <ul>
@@ -858,9 +850,16 @@ Actual       setosa versicolor virginica
 </div>
 <p>As the table shows, the model only made one incorrect prediction, a versicolor flower that was predicted to be virginica. Testing performance may vary due to seeding variance other factors, but in this case the model performed quite well.</p>
 <p>All in all, k-NN models are strong options for projects where you would like to predict classifications based on a wholistic data frame.</p>
+<!-- do randomforest if you have time after finishing everything else?-->
 </section>
 <section id="other-noteworthy-models" class="level3">
 <h3 class="anchored" data-anchor-id="other-noteworthy-models">Other Noteworthy Models</h3>
+<p>Other models worth considering not mentioned in this article include:</p>
+<ul>
+<li>randomforest (<a href="https://www.projectpro.io/recipes/perform-random-forest-r">learn more</a>)</li>
+<li>Linear mixed effects modeling (<a href="https://www.rdocumentation.org/packages/lme4/versions/2.0-6/topics/lmer">learn more</a>)</li>
+<li></li>
+</ul>
 
 
 </section>
