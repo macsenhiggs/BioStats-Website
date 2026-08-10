@@ -2,4 +2,54 @@
 title: "Example Project A: Identifying Opioid Misuse Indicators Among Rural Populations"
 ---
 
-Words
+### Introduction
+
+For this project, the student chose to do a data analytics project on opioid misuse in Georgia. Their research question was:
+
+> “How do socioeconomic factors affect opioid misuse in those with vs. without mental health disorders in rural areas in the South?”
+
+They hypothesized that those living in rural areas with mental health disorders in the South have higher odds of opioid misuse than those without mental health disorders in non-rural areas due to socioeconomic factors being highly prevalent in the rural South which may contribute to opioid misuse to cope with such factors.
+
+### Building a Model
+
+The student isolated variables of interest such as outcome/dependent variable, socioeconomic factors (predictors), control population/demographic variables, confounding variables, and independent variables. These variables were used to run a logistic regression model in R Studio using the FinalFit package to create the linear model to show their results
+FinalFit allows for publication-ready tables to be created through R Studio to Word. 
+
+Below is an example of one of the FinalFit tables generated from the student's data:
+
+| Variable / Category | Other | Opioid Misuse | OR (univariable) | OR (multivariable) |
+| :--- | :--- | :--- | :--- | :--- |
+| **LivingArrangement** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;Experiencing Homelessness | 1977 (64.0) | 1111 (36.0) | - | - |
+| &nbsp;&nbsp;&nbsp;&nbsp;Dependent Living | 3911 (74.2) | 1357 (25.8) | 0.62 (0.56-0.68, $p<0.001$) | 0.66 (0.60-0.73, $p<0.001$) |
+| &nbsp;&nbsp;&nbsp;&nbsp;Independent Living | 15405 (76.7) | 4692 (23.3) | 0.54 (0.50-0.59, $p<0.001$) | 0.57 (0.53-0.62, $p<0.001$) |
+| **Population** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;Other | 13639 (73.7) | 4872 (26.3) | - | - |
+| &nbsp;&nbsp;&nbsp;&nbsp;Rural | 7654 (77.0) | 2288 (23.0) | 1.20 (1.10-1.31, $p<0.001$) | 1.19 (1.09-1.30, $p<0.001$) |
+| **MentalHealth** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;No | 9357 (77.8) | 2677 (22.2) | - | - |
+| &nbsp;&nbsp;&nbsp;&nbsp;Yes | 11936 (72.7) | 4483 (27.3) | 1.58 (1.47-1.70, $p<0.001$) | 1.47 (1.37-1.58, $p<0.001$) |
+| **PriorEpisode** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;No | 14117 (77.4) | 4126 (22.6) | - | - |
+| &nbsp;&nbsp;&nbsp;&nbsp;One Or More | 7176 (70.3) | 3034 (29.7) | 1.45 (1.37-1.53, $p<0.001$) | 1.46 (1.38-1.55, $p<0.001$) |
+| **ReasonDischarge** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;CompletedTransferred | 14157 (73.6) | 5087 (26.4) | - | - |
+| &nbsp;&nbsp;&nbsp;&nbsp;DroppedTerminated | 6097 (78.5) | 1670 (21.5) | 0.76 (0.72-0.81, $p<0.001$) | 0.81 (0.76-0.87, $p<0.001$) |
+| &nbsp;&nbsp;&nbsp;&nbsp;Other | 1039 (72.1) | 403 (27.9) | 1.08 (0.96-1.22, $p=0.210$) | 1.04 (0.92-1.18, $p=0.477$) |
+| **PopulationRural:MentalHealthYes** | | | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;Interaction | - | - | 0.56 (0.50-0.63, $p<0.001$) | 0.60 (0.53-0.67, $p<0.001$) |
+
+
+### Analysis & Interpretation
+
+For this first table from the logistic regression model, the odds of opioid misuse were compared against the socioeconomic factor of living arrangements in those with and without mental health disorders and in rural population or not rural. The results found that those who experienced dependent living (multivariable OR 0.66, p<0.001) and independent living (multivariable OR 0.57, p<0.001) have lower odds of opioid misuse than those experiencing homelessness in the South. Additionally, the model shows that those with mental health disorders in these circumstances have 47%, significantly higher odds (multivariable OR 1.47, p<0.001) of opioid misuse compared to those without mental health disorders. Those living in rural populations have 19% higher odds than those living in other population types (multivariable OR 1.18, p<0.001). When analyzed together through interaction, those living in rural areas with mental health disorders have lower odds of opioid misuse. The results shown are statistically significant. 
+
+These results show how the socioeconomic stress of being unhoused could potentially lead to the turn towards drugs to deal with this stressor. Those living in poverty and without housing may have rampant access to drugs such as opioids and may be using them to cope with these circumstances.
+
+### Conclusion
+
+The results found statistically significant higher odds of opioid misuse associated with certain socioeconomic factors. Those living in rural populations or with mental health disorders had statistically significant higher odds of opioid misuse compared to those in other population types and without mental health disorders. When an interaction was run, those with mental health disorders paired with living in rural areas had lower odds of opioid misuse. While this finding contrasts with my hypothesis, the independent findings (without interaction) do show higher odds of opioid misuse. The dataset could reveal that those in rural areas may be living in healthcare deserts where access to treatment may be limited, and such factors may limit the ability to obtain treatment. This observational finding may contribute to the understanding of certain associations and findings through this analysis.
+
+### Appendix
+
+If you are interested in reading the student's complete document of tables, it is available for viewing and download [here](assets/exampleproja-tables.pdf).

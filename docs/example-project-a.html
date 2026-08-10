@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Example Project A: Identifying Opioid Misuse Indicators Among Rural Populations – Stat 3125 ProjectGuide</title>
+<title>Example Project A: Identifying Opioid Misuse Indicators Among Rural Populations – STAT 3125 Project Guide</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,13 +42,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ca649cc84620f71f38d442ff4fcbf721.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -71,57 +71,212 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Stat 3125 ProjectGuide</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./getting-started.html"> 
-<span class="menu-text">Getting Started</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./example-project-nav.html"> 
-<span class="menu-text">Examples</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./example-project-a.html">Example Projects</a></li><li class="breadcrumb-item"><a href="./example-project-a.html">Example Project A</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 3125 Project Guide</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Project Guide Workflow</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./finding-your-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Finding Your Dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cleaning-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Cleaning Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./choosing-your-question.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Choosing Your Question</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./performing-eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Performing EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modeling-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Modeling Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analyzing-results.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Analyzing Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creating-your-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Creating Your Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Package Usage Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dplyr-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ggplot2 guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./finalfit-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">finalfit guide</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Example Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-project-a.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Example Project A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example-project-b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Example Project B</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#building-a-model" id="toc-building-a-model" class="nav-link" data-scroll-target="#building-a-model">Building a Model</a></li>
+  <li><a href="#analysis-interpretation" id="toc-analysis-interpretation" class="nav-link" data-scroll-target="#analysis-interpretation">Analysis &amp; Interpretation</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./example-project-a.html">Example Projects</a></li><li class="breadcrumb-item"><a href="./example-project-a.html">Example Project A</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Example Project A: Identifying Opioid Misuse Indicators Among Rural Populations</h1>
 </div>
@@ -140,9 +295,187 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Words</p>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>For this project, the student chose to do a data analytics project on opioid misuse in Georgia. Their research question was:</p>
+<blockquote class="blockquote">
+<p>“How do socioeconomic factors affect opioid misuse in those with vs.&nbsp;without mental health disorders in rural areas in the South?”</p>
+</blockquote>
+<p>They hypothesized that those living in rural areas with mental health disorders in the South have higher odds of opioid misuse than those without mental health disorders in non-rural areas due to socioeconomic factors being highly prevalent in the rural South which may contribute to opioid misuse to cope with such factors.</p>
+</section>
+<section id="building-a-model" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-model">Building a Model</h3>
+<p>The student isolated variables of interest such as outcome/dependent variable, socioeconomic factors (predictors), control population/demographic variables, confounding variables, and independent variables. These variables were used to run a logistic regression model in R Studio using the FinalFit package to create the linear model to show their results FinalFit allows for publication-ready tables to be created through R Studio to Word.</p>
+<p>Below is an example of one of the FinalFit tables generated from the student’s data:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable / Category</th>
+<th style="text-align: left;">Other</th>
+<th style="text-align: left;">Opioid Misuse</th>
+<th style="text-align: left;">OR (univariable)</th>
+<th style="text-align: left;">OR (multivariable)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>LivingArrangement</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Experiencing Homelessness</td>
+<td style="text-align: left;">1977 (64.0)</td>
+<td style="text-align: left;">1111 (36.0)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Dependent Living</td>
+<td style="text-align: left;">3911 (74.2)</td>
+<td style="text-align: left;">1357 (25.8)</td>
+<td style="text-align: left;">0.62 (0.56-0.68, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">0.66 (0.60-0.73, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Independent Living</td>
+<td style="text-align: left;">15405 (76.7)</td>
+<td style="text-align: left;">4692 (23.3)</td>
+<td style="text-align: left;">0.54 (0.50-0.59, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">0.57 (0.53-0.62, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Population</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Other</td>
+<td style="text-align: left;">13639 (73.7)</td>
+<td style="text-align: left;">4872 (26.3)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Rural</td>
+<td style="text-align: left;">7654 (77.0)</td>
+<td style="text-align: left;">2288 (23.0)</td>
+<td style="text-align: left;">1.20 (1.10-1.31, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">1.19 (1.09-1.30, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>MentalHealth</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td style="text-align: left;">9357 (77.8)</td>
+<td style="text-align: left;">2677 (22.2)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Yes</td>
+<td style="text-align: left;">11936 (72.7)</td>
+<td style="text-align: left;">4483 (27.3)</td>
+<td style="text-align: left;">1.58 (1.47-1.70, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">1.47 (1.37-1.58, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>PriorEpisode</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;No</td>
+<td style="text-align: left;">14117 (77.4)</td>
+<td style="text-align: left;">4126 (22.6)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;One Or More</td>
+<td style="text-align: left;">7176 (70.3)</td>
+<td style="text-align: left;">3034 (29.7)</td>
+<td style="text-align: left;">1.45 (1.37-1.53, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">1.46 (1.38-1.55, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>ReasonDischarge</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;CompletedTransferred</td>
+<td style="text-align: left;">14157 (73.6)</td>
+<td style="text-align: left;">5087 (26.4)</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;DroppedTerminated</td>
+<td style="text-align: left;">6097 (78.5)</td>
+<td style="text-align: left;">1670 (21.5)</td>
+<td style="text-align: left;">0.76 (0.72-0.81, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">0.81 (0.76-0.87, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Other</td>
+<td style="text-align: left;">1039 (72.1)</td>
+<td style="text-align: left;">403 (27.9)</td>
+<td style="text-align: left;">1.08 (0.96-1.22, <span class="math inline">\(p=0.210\)</span>)</td>
+<td style="text-align: left;">1.04 (0.92-1.18, <span class="math inline">\(p=0.477\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>PopulationRural:MentalHealthYes</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;Interaction</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.56 (0.50-0.63, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+<td style="text-align: left;">0.60 (0.53-0.67, <span class="math inline">\(p&lt;0.001\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="analysis-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-interpretation">Analysis &amp; Interpretation</h3>
+<p>For this first table from the logistic regression model, the odds of opioid misuse were compared against the socioeconomic factor of living arrangements in those with and without mental health disorders and in rural population or not rural. The results found that those who experienced dependent living (multivariable OR 0.66, p&lt;0.001) and independent living (multivariable OR 0.57, p&lt;0.001) have lower odds of opioid misuse than those experiencing homelessness in the South. Additionally, the model shows that those with mental health disorders in these circumstances have 47%, significantly higher odds (multivariable OR 1.47, p&lt;0.001) of opioid misuse compared to those without mental health disorders. Those living in rural populations have 19% higher odds than those living in other population types (multivariable OR 1.18, p&lt;0.001). When analyzed together through interaction, those living in rural areas with mental health disorders have lower odds of opioid misuse. The results shown are statistically significant.</p>
+<p>These results show how the socioeconomic stress of being unhoused could potentially lead to the turn towards drugs to deal with this stressor. Those living in poverty and without housing may have rampant access to drugs such as opioids and may be using them to cope with these circumstances.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>The results found statistically significant higher odds of opioid misuse associated with certain socioeconomic factors. Those living in rural populations or with mental health disorders had statistically significant higher odds of opioid misuse compared to those in other population types and without mental health disorders. When an interaction was run, those with mental health disorders paired with living in rural areas had lower odds of opioid misuse. While this finding contrasts with my hypothesis, the independent findings (without interaction) do show higher odds of opioid misuse. The dataset could reveal that those in rural areas may be living in healthcare deserts where access to treatment may be limited, and such factors may limit the ability to obtain treatment. This observational finding may contribute to the understanding of certain associations and findings through this analysis.</p>
+</section>
+<section id="appendix" class="level3">
+<h3 class="anchored" data-anchor-id="appendix">Appendix</h3>
+<p>If you are interested in reading the student’s complete document of tables, it is available for viewing and download <a href="assets/exampleproja-tables.pdf">here</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -232,6 +565,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

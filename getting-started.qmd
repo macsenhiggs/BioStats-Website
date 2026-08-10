@@ -2,26 +2,28 @@
 title: "Getting Started"
 ---
 
-Before a student can get underway with a project, there are a few pieces of prerequisite knowledge that are recommended to prevent roadblocks further down the line.
+Before beginning a project, ensure you have the necessary environment and tools set up to keep your workflow running smoothly.
 
-* R and R Studio: The first couple weeks of class will ensure that you are set up with this software, as it is required for classwork. The guides on this website are written with R users in mind.
-* Popular R packages: These packages will make appearances in some of the example projects on this site and greatly simplify the work of data analysis and visualization.
-    <!-- Turn this into a table instead? -->
-  * dplyr:
-    * Click [here](dplyr-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
-    * Click [here](https://dplyr.tidyverse.org/) to learn more from its official website.
-  * finalfit:
-    * Click [here](finalfit-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
-    * Click [here](https://finalfit.org/) to learn more from its official website.
-  * ggplot2: 
-    * Click [here](ggplot2-guide.qmd) to read a helpful guide written for STAT 3125 students like you.
-    * Click [here](https://ggplot2.tidyverse.org/) to learn more from its official website.
+## Prerequisites
 
-Although details can vary on a case-by-case basis: the fundamental structure of creating a data analytics process goes as such, and a helpful article has been provided for each step:
+* **R and RStudio:** Make sure you have R[^1] and RStudio[^2] installed and working on your machine. The tutorials across this site are specifically tailored for R workflows.
+* **Essential R Packages:** Familiarize yourself with key packages like `dplyr`, `ggplot2`, and `finalfit`. You can find dedicated user guides for each of these in the **Package Usage Guides** section of the sidebar.
 
-1. [Finding and Choosing a Dataset](finding-your-dataset.qmd)
-2. [Choosing Your Research Question](choosing-your-question.qmd)
-3. [Performing Exploratory Data Analysis (EDA)](performing-eda.qmd)
-4. Modeling Data (Working title)
-5. Analyzing Results
-6. Creating Your Report/Presentation
+---
+
+## Project Guide Sections
+
+This site breaks down the data analytics process into seven step-by-step phases:
+
+* **1. Finding Your Dataset:** How to search reliable data repositories and evaluate whether a dataset fits your research goals.
+* **2. Cleaning Data:** Techniques for importing, tidying, re-encoding, and transforming messy raw data into a clean tabular structure.
+* **3. Choosing Your Question:** Strategies for narrowing scope, formulating actionable hypotheses, and defining clear research objectives.
+* **4. Performing EDA:** Using summary statistics and exploratory visual plots to uncover patterns, trends, and distributions.
+* **5. Modeling Data:** Guidance on applying statistical tests and modeling approaches appropriate for your data.
+* **6. Analyzing Results:** Interpreting statistical outputs, model coefficients, and converting raw statistics into meaningful insights.
+* **7. Creating Your Report/Presentation:** Best practices for structuring posters, slide decks, or written reports for Analytics Day or course submission.
+
+Click [here](finding-your-dataset.qmd) to get started with the first step of the process.
+
+[^1]: Download and install R from the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/).
+[^2]: Download and install RStudio Desktop from [Posit](https://posit.co/download/rstudio-desktop/).

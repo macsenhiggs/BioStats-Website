@@ -2,15 +2,48 @@ project:
   type: website
   output-dir: docs
 
+
 website:
-  title: "Stat 3125 ProjectGuide"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - getting-started.qmd
-      - href: example-project-nav.qmd
-        text: Examples
+  title: "STAT 3125 Project Guide"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - text: "Getting Started"
+        href: getting-started.qmd
+      - section: "Project Guide Workflow"
+        contents:
+          - text: "1. Finding Your Dataset"
+            href: finding-your-dataset.qmd
+          - text: "2. Cleaning Data"
+            href: cleaning-data.qmd
+          - text: "3. Choosing Your Question"
+            href: choosing-your-question.qmd
+          - text: "4. Performing EDA"
+            href: performing-eda.qmd
+          - text: "5. Modeling Data"
+            href: modeling-data.qmd
+          - text: "6. Analyzing Results"
+            href: analyzing-results.qmd
+          - text: "7. Creating Your Report"
+            href: creating-your-report.qmd
+      - section: "Package Usage Guides"
+        contents:
+          - text: "dplyr guide"
+            href: dplyr-guide.qmd
+          - text: "ggplot2 guide"
+            href: ggplot2-guide.qmd
+          - text: "finalfit guide"
+            href: finalfit-guide.qmd
+      - section: "Example Projects"
+        contents:
+          - text: "Example Project A"
+            href: example-project-a.qmd
+          - text: "Example Project B"
+            href: example-project-b.qmd
+
   page-footer:
     left: ""
     center: "Built with Quarto"

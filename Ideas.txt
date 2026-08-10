@@ -1,22 +1,8 @@
-Macsen to do:
-- write creating your report article
-- contribute to modeling data article (shared effort?)
-- restructure site org
-
-Gabi to do:
-- write example project summary article
-- contribute to modeling data article
-- write analyzing results article
-
-General Plan:
-- Gabi finishes her share by Tuesday 7/28
-- Macsen finishes his share and wraps site up in a bow by Friday 8/7
-- Schedule meeting w/ Professor Zhang Monday 8/10 at the very latest
-- Apply any corrections from Professor Zhang ASAP following meeting and finish project
-
-
-
 gabi's written articles:
 - relating to class material - appendix article
 - Modeling data - lm section of modeling data article
-- rest of content - example project A review and summary
+
+content missing as of 8/10:
+ - creating your report
+ - analyzing results
+ - finishing touches on modeling data

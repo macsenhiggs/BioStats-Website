@@ -1,16 +1,31 @@
 ---
-title: "Stat 3125 ProjectGuide"
+title: "STAT 3125 Project Guide"
 ---
 
-This website exists as a resource for STAT 3125 students looking to create a semester project with the intention of presenting at Analytics Day, fulfilling an honors contract, or simply expanding their portfolio.
+Welcome to the STAT 3125 Project Guide, a resource for creating semester projects for Analytics Day, honors contracts, or portfolio building.
 
-Resources available on this site include but are not limited to:
+::: {.callout-note icon=false}
+## First time here?
+Begin with the **[Getting Started Guide](getting-started.qmd)** to set up R and key packages.
+:::
 
-* Where to find your dataset
-* Using popular R packages to make data analysis easier
-* Performing Exploratory Data Analysis (EDA)
-* Possible data processing/modeling methods
-* Using ggplot2 for easy plot creation
-* Assembling a presentation/poster
+### 1. [Finding Your Dataset](finding-your-dataset.qmd)
+Identify reliable repositories and select an appropriate dataset.
 
-If this is your first time using the site, it is recommended to begin by reading our [Getting Started](./getting-started.qmd) page, which will prepare you for your upcoming project.
+### 2. [Cleaning Data](cleaning-data.qmd)
+Tidy, transform, and structure raw data for analysis.
+
+### 3. [Choosing Your Question](choosing-your-question.qmd)
+Define clear, actionable research questions.
+
+### 4. [Performing EDA](performing-eda.qmd)
+Explore distributions and relationships visually.
+
+### 5. [Modeling Data](modeling-data.qmd)
+Apply statistical models to test hypotheses.
+
+### 6. [Analyzing Results](analyzing-results.qmd)
+Interpret outputs and draw conclusions.
+
+### 7. [Creating Your Report/Presentation](creating-your-report.qmd)
+Assemble final posters, slides, or written reports.
