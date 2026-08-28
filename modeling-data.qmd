@@ -4,7 +4,89 @@ title: "Modeling Data"
 
 ### Choosing a Model
 
-### Linear Modeling (lm, mlm, glm)
+Choosing your model comes down to two main questions. First, what is the structure of the data you're analyzing? Second, what question are you trying to answer with your findings? At this point in the process, with EDA and hypothesis formulation in the rearview, you should feel comfortable answering both. From there, all you need is an understanding of what types of models lay at your disposal. There are dozens upon dozens of widely accepted data modeling techniques, but this article will cover a limited range of those that are most useful for an undergraduate student like yourself without going overboard on complexity.
+
+### Linear Modeling (lm, glm)
+
+The simplest form of data modeling that we will cover in this article is linear modeling. Linear modeling is a statistical method that creates linear equations to show the relationship between an input and output variable. One assumption required for this type of modeling is that the data itself is linear. Suppose that our hypothesis is as such: "is there a linear relationship between a flower's sepal and petal lengths?" First, let's test for correlation:
+
+```{r}
+#| warning: false
+
+coefficient <- cor.test(iris$Sepal.Length, iris$Petal.Length)
+coefficient$estimate
+```
+
+With a correlation value this close to 1, we know that our data has a strong positive linear correlation between the two variables and can proceed forward. Building our model is as simple as calling the `lm()` method in base R, in which we define our dataset and variables, and then we can analyze it using the `summary()` function.
+
+```{r}
+#| warning: false
+
+model <- lm(Petal.Length ~ Sepal.Length, data = iris)
+summary(model)
+```
+
+This model can now be utilized to predict future values. However, it is quite simple. It is worth noting that you can add elements to a linear model to increase its breadth of input data by replacing `output ~ input` with `output ~ input1 + input2`, but it is usually best practice to convert to a more complex model such as a Generalized Linear Model (GLM) to do so. GLMs expand upon the fundamentals of a linear model, but are more generalized and flexible. They use link functions to correlate inputs to response variables, unifying basic linear modeling with regression analysis to provide more advanced predictive modeling of quantitative values.
+
+Let's use the `diamonds` dataset, which benefits from over 50,000 observations, to predict whether each diamond will have a price in the upper 10% of observations (basically, a "high-quality" stone). GLMs are especially effective at predicting the state of a binary variable from many inputs, and we can develop one to predict whether a diamond has a high price by creating a variable tied to an `ifelse()` command about the stone's value relative to a certain quantile.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+library(broom)
+
+diamonds_df <- diamonds |>
+  mutate(
+    # Diamond has high price if it is in the 90th percentile or above
+    high_price = if_else(price > quantile(price, probs = 0.90), 1, 0)
+  )
+
+model_diamonds <- glm(
+  high_price ~ carat + depth + table, 
+  data = diamonds_df, 
+  family = binomial(link = "logit")
+)
+
+# Tidy summary table
+tidy(model_diamonds)
+
+# Convert to odds ratios
+odds_ratios <- tidy(model_diamonds, exponentiate = TRUE, conf.int = TRUE) |>
+  select(term, estimate, conf.low, conf.high, p.value)
+
+print(odds_ratios)
+```
+
+This model summary shows some key indicators about the model's structure that can be more easily interpreted in the form of the odds ratios, including:
+
+* An increase of `carat` by 1 results in a likelihood of a diamond being highly priced by an estimate of over 1300x.
+* `depth` and `table` both have negative correlations with high price status.
+* All these findings are statistically significant (likely aided by a massive sample size), with astronomically small p-values across the board.
+
+We can also use the GLM's `predict()` function to estimate the likelihood of diamonds having high price status from base principles, as shown below.
+
+```{r}
+#| warning: false
+
+# Predict likelihood of high price in identical diamonds with different carat values
+new_diamonds <- tibble(
+  carat = c(0.5, 1.0, 1.5),
+  depth = c(61.5, 61.5, 61.5),
+  table = c(57, 57, 57)
+)
+
+new_diamonds_predict <- new_diamonds |>
+  mutate(
+    predicted_prob = predict(model_diamonds, newdata = new_diamonds, type = "response")
+  )
+
+print(new_diamonds_predict)
+```
+
+According to the model, these identical diamonds of 0.5 and 1.5 carat weights have a near-zero and 50% probability of being priced in the upper 10%.
+
+In conclusion, linear models are a good starting point for modeling data, but your project may necessitate a more complex method.
 
 ### Time-to-Event Modeling (survival)
 
@@ -176,6 +258,6 @@ All in all, k-NN models are strong options for projects where you would like to 
 
 Other models worth considering not mentioned in this article include:
 
+* Mixed linear modeling ([learn more](https://www.rdocumentation.org/packages/omics/versions/0.1-5/topics/mlm))
 * randomforest ([learn more](https://www.projectpro.io/recipes/perform-random-forest-r))
 * Linear mixed effects modeling ([learn more](https://www.rdocumentation.org/packages/lme4/versions/2.0-6/topics/lmer))
-* 

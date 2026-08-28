@@ -1,1 +1,14 @@
-Gabi do this
+---
+title: "Analyzing Results"
+---
+
+Results analysis is the hardest stage of data science to create a guide for, as there are few principles that can be applied to the process in a "one size fits all" manner. As such, we have instead chosen to use this article as a reminder to learn about the process that other students before yourself have gone through to analyze results, such as in example projects [A](example-project-a.qmd) and [B](example-project-b.qmd).
+
+Some general pieces of advice to keep in mind when analyzing your results include:
+
+* Ground metrics relative to baselines, which add context and weight.
+* Don't throw out negative results. Instead, ask what traits in the data might have led to an unpredicted outcome.
+* Remember that correlation does not equal causation. Test the validity of a trend before claiming it to an audience.
+* Validate against overfitting. If a result feels too good to be true, it might be.
+
+Vet your results along these guidelines, and you should have results that will hold up to a critically-minded audience.

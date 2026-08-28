@@ -1,2 +1,33 @@
-Macsen do this
+---
+title: "Creating Your Report"
+---
+
+### Preface
+
+With all the hard work out of the way, the final step in developing your project is to compile your findings into a final product. Although there are many mediums which would suffice for communicating analytical findings, the most common ones are slide decks, posters, and written reports. Although they differ in length and distribution of text and visuals, their core concepts are nearly identical. There are a handful of key elements that should be present in any data science report, and this article will lay them out so you can apply them yourself when you have finished your project.
+
+The sections described in this article are based on [this template](assets/ksu-poster-template.pdf) provided by Kennesaw State University for students looking to present in its biannual Analytics Day. More information and advice can also be found in [this video](https://mediaspace.kennesaw.edu/media/OUR+Video+SeriesA+Creating+an+Effective+Research+Poster/1_0a4pw2g5) on KSU's website.
+
+### Section 1: Introduction
+
+First, provide all the necessary context for your project that your audience will need to keep up with the following steps. This heavily overlaps with the first 3 or 4 steps of the process as described on this site. Depending on the extent of your EDA, you may want to include it in your introduction, but there are also scenarios where it would be valid to put it in methodology. Start with the question you asked that led to this project and your hypothesis. Then, relate that in material terms to your dataset. Focus on building a cohesive narrative that leads your audience into the finer details of your work.
+
+### Section 2: Methods
+
+This section is pretty straightforward. Your job here is simply to describe the steps you took to model and frame your data in enough detail to minimize confusion between the introduction and the results. When applicable, try to formulate convincing justifications for your decisions (e.g. "I chose this model because of X trait in my data and I was looking for Y feature in the results").
+
+### Section 3: Results
+
+In this section your goal is to provide a pointed summary of the results of your analysis. Highlight key values that most directly answer the questions at the core of your project. However, try to keep narrative framing to a minimum, as that will be the core of the next and final section.
+
+### Section 4: Conclusions
+
+With your results laid out, tie it all together and finish crafting your narrative. Explain to your audience how your findings prove or disprove your hypothesis. In addition, this is a good time to talk about potential changes that you would have made to your process with the benefit of hindsight or limitations of the model or data (if applicable). It might also be worth mentioning possible expansions upon your work that you would like to perform or hand off to other students if possible. Lastly, remind your audience why you took on this project and what pride you would take in the final product.
+
+### Final Notes
+
+It is always a good idea to get external feedback on any project you're working on, and your report should be no different. If you have time before your deadline, run it by a couple different audiences, such as your friends or your professor. Although the process of the analysis itself is likely set in stone at this stage, you could get some valuable feedback on how you discuss and frame your work.
+
+That's it! Congratulations on completing a formal data science project. We hope this guide has been a helpful resource along your journey and wish you luck with your final submission.
+
 

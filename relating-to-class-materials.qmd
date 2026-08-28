@@ -1,0 +1,25 @@
+---
+title: "Relating Project Work to Class Materials"
+---
+
+For this project, it is most likely you are a STAT 3125 student interested in data analytics research. If you are taking STAT 3125, then you may be a biology or biochemistry major, and therefore this type of project may feel out of your comfort zone as you probably have limited coding experience. That is ok, as this project can be done with help from this website and the information you’ve learned in class. If you are a pre-med, pre-PA, pre-dental, pre-optometry, etc. student, this type of project is a great introduction to research in biology-driven data analytics research.  
+
+When it comes to analyzing data, we recommend looking at the STAT 3125 course materials to get an idea of what kind of techniques to use and how to use your knowledge to interpret results from your data work in R Studio. If you’ve taken STAT 3125 online, the course lecture recordings have a lot of great information on how to ask and answer research questions. The in-class guided notes from Dr. Zhang’s lectures can be helpful as well.
+
+The following class material may prove helpful for your data analytics research project: 
+
+* In-Class Notes 1
+  * Defines statistics and outlines the important factors in collecting and analyzing data.
+  * Outlines data and how to determine/define your variable.  
+* In-Class Notes 2
+  * Helps with the creation of your hypotheses (null and alternative).
+  * Defines the types of samples you may wish to work with and types of biases to keep in mind when working with the data.
+  * Defines types of research studies.
+* In-Class Notes 3
+  *  Helps with summarizing your categorical variables and how to show your data graphically or visually.
+  *  Gives a visual representation of what you may be looking at in R studio paired with a package to display your results.
+* In-Class Notes 4 
+  * Examines risk and odds (how to calculate and understand it), which may be helpful when writing about your results from a table. 
+  * Covers statistical significance and how to interpret it (which is needed for interpreting odds and relationships between variables). 
+* In-Class Notes 7 
+  * Outlines how to look for patterns in the data and learning about linear regression (also demonstrated in [Example Project A](example-project-a.qmd))

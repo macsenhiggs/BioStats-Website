@@ -43,6 +43,10 @@ website:
             href: example-project-a.qmd
           - text: "Example Project B"
             href: example-project-b.qmd
+      - section: "Appendix"
+        contents:
+          - text: "Relating to Class Materials"
+            href: relating-to-class-materials.qmd
 
   page-footer:
     left: ""
